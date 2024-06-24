@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiplication Test - Sanjoe Public School</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            color: #000;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        header {
+            background-color: #003366;
+            color: white;
+            padding: 1em 0;
+        }
+        header h1 {
+            margin: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 2em auto;
+            padding: 1em;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        .question {
+            margin-bottom: 1em;
+        }
+        .question h3 {
+            margin: 0.5em 0;
+        }
+        .options label {
+            display: block;
+            margin: 0.5em 0;
+        }
+        .submit-btn, .retest-btn {
+            background-color: #008000;
+            color: white;
+            border: none;
+            padding: 0.75em 1.5em;
+            font-size: 1em;
+            cursor: pointer;
+            border-radius: 4px;
+            margin-top: 1em;
+        }
+        .submit-btn:hover, .retest-btn:hover {
+            background-color: #006400;
+        }
+        .result {
+            margin-top: 2em;
+        }
+        .timer {
+            font-size: 1.2em;
+            margin-bottom: 1em;
+            color: #ff0000;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Multiplication Test</h1>
+<a href="kindergarten.html" align="left"><b><h3>Back to Kindergarten</h3></b></a>
+    </header>
+    <div class="container">
+        <div class="timer" id="timer">Time remaining: 50 seconds</div>
+        <form id="examForm">
+            <div id="questionsContainer"></div>
+            <button type="button" class="submit-btn" id="submitBtn" onclick="calculateScore()">Submit</button>
+        </form>
+        <div class="result" id="result"></div>
+        <button type="button" class="retest-btn" id="retestBtn" style="display: none;" onclick="location.reload()">Re-test</button>
+    </div>
+
+    <script>
+        let timeRemaining = 50;
+        const timerElement = document.getElementById('timer');
+        const submitButton = document.getElementById('submitBtn');
+        const retestButton = document.getElementById('retestBtn');
+        const formElement = document.getElementById('examForm');
+        const questionsContainer = document.getElementById('questionsContainer');
+
+        function startTimer() {
+            const timerInterval = setInterval(() => {
+                timeRemaining--;
+                timerElement.textContent = `Time remaining: ${timeRemaining} seconds`;
+
+                if (timeRemaining <= 0) {
+                    clearInterval(timerInterval);
+                    timeOver();
+                }
+            }, 1000);
+        }
+
+        function timeOver() {
+            timerElement.textContent = 'Exam time over';
+            submitButton.disabled = true;
+            formElement.querySelectorAll('input').forEach(input => input.disabled = true);
+        }
+
+        function generateQuestions() {
+            const questions = [];
+            for (let i = 1; i <= 10; i++) {
+                const num1 = Math.floor(Math.random() * 10) + 1;
+                const num2 = Math.floor(Math.random() * 10) + 1;
+                const correctAnswer = num1 * num2;
+                questions.push({ num1, num2, correctAnswer });
+            }
+            return questions;
+        }
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+        }
+
+        function displayQuestions(questions) {
+            questionsContainer.innerHTML = '';
+            questions.forEach((question, index) => {
+                const options = [
+                    question.correctAnswer,
+                    question.correctAnswer + 1,
+                    question.correctAnswer - 1,
+                    question.correctAnswer + 2
+                ];
+                shuffleArray(options);
+                const questionHTML = `
+                    <div class="question">
+                        <h3>${index + 1}. What is ${question.num1} * ${question.num2}?</h3>
+                        <div class="options">
+                            ${options.map(option => `<label><input type="radio" name="q${index + 1}" value="${option}"> ${option}</label>`).join('')}
+                        </div>
+                    </div>
+                `;
+                questionsContainer.innerHTML += questionHTML;
+            });
+        }
+
+        function calculateScore() {
+            let score = 0;
+            questions.forEach((question, index) => {
+                const userAnswer = formElement.querySelector(`input[name="q${index + 1}"]:checked`);
+                if (userAnswer && parseInt(userAnswer.value) === question.correctAnswer) {
+                    score++;
+                }
+            });
+
+            const resultElement = document.getElementById('result');
+            resultElement.textContent = `Your score is ${score} out of 10.`;
+            if (score === 10) {
+                resultElement.textContent += ' Well done!';
+            }
+            submitButton.disabled = true;
+            retestButton.style.display = 'block';
+        }
+
+        // Generate and display questions on page load
+        const questions = generateQuestions();
+        displayQuestions(questions);
+
+        // Start the timer when the page loads
+        window.onload = startTimer;
+    </script>
+</body>
+</html>
+

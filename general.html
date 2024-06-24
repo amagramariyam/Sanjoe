@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>General Information - Sanjoe Public School</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f8ff;
+            color: #000;
+            text-align: center;
+        }
+        header {
+            background-color: #003366;
+            color: #ffffff;
+            padding: 1em 0;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #008000;
+            position: relative;
+        }
+        nav a {
+            color: #ffffff;
+            padding: 1em;
+            text-decoration: none;
+        }
+        nav a:hover {
+            background-color: #cbd394;
+        }
+        .tab-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 2em 0;
+        }
+        .tab-buttons {
+            display: flex;
+            margin-bottom: 2em;
+        }
+        .tab-buttons button {
+            background-color: #008000;
+            color: white;
+            border: none;
+            padding: 1em;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .tab-buttons button:hover {
+            background-color: #cbd394;
+        }
+        .tab-content {
+            display: none;
+            max-width: 1200px;
+            text-align: left;
+            padding: 2em;
+            background-color: #ffffff;
+            border: 2px solid #003366;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2em;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        .principal-message img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            transition: transform 0.5s, box-shadow 0.5s;
+        }
+        .principal-message img:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+        }
+        .facilities img {
+            width: 200px;
+            height: 200px;
+            margin: 1em;
+            transition: transform 0.3s;
+            cursor: pointer;
+            object-fit: cover;
+            border: 2px solid #ccc;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .facilities img:hover {
+            transform: scale(1.1);
+        }
+        footer {
+            background-color: #003366;
+            color: #ffffff;
+            text-align: center;
+            padding: 1em 0;
+        }
+        footer p {
+            margin: 0.5em 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1em;
+        }
+        table, th, td {
+            border: 1px solid #003366;
+        }
+        th, td {
+            padding: 0.75em;
+            text-align: center;
+        }
+        th {
+            background-color: #003366;
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>General Information</h1>
+    </header>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="about-us.html">About Us</a>
+        <a href="index.html#staff">Staff</a>
+        <a href="index.html#gallery">Gallery</a>
+        <a href="https://forms.gle/QhPGrzfeuXSUerYa6">Admission</a>
+        <a href="mandatory-disclosure.html">Mandatory Disclosure</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+    <div class="tab-container">
+        <div class="tab-buttons">
+            <button onclick="openTab('principal')">Principal's Message</button>
+            <button onclick="openTab('facilities')">Facilities</button>
+            <button onclick="openTab('campus')">Campus</button>
+            <button onclick="openTab('fees')">Fee Structure</button>
+            <button onclick="openTab('students')">Students</button>
+            <button onclick="openTab('staff')">Teaching Staff</button>
+            <button onclick="openTab('others')">Others</button>
+        </div>
+        <div id="principal" class="tab-content principal-message">
+            <h2>Principal's Message</h2>
+            <img src="staff/1.jpg" alt="Principal">
+            <p>Welcome to Sanjoe Public School, Kaniyaram!</p>
+<p>At Sanjoe Public School, our mission is to provide a nurturing and stimulating environment that fosters academic excellence, personal growth, and a passion for lifelong learning. As a CBSE-affiliated institution, we are committed to upholding the highest standards of education, ensuring that each student reaches their full potential.</p>
+
+<p>Our dedicated team of educators employs innovative teaching methods to create a dynamic and engaging curriculum that meets the diverse needs of our students. We believe in a holistic approach to education, emphasizing not only intellectual development but also the physical, emotional, and social well-being of our students.</p>
+
+<p>At Sanjoe Public School, we strive to cultivate critical thinking, creativity, and leadership skills. We encourage our students to be inquisitive, compassionate, and responsible citizens who contribute positively to society. Through a wide range of extracurricular activities, sports, and community service programs, we aim to develop well-rounded individuals who are prepared for the challenges of the future.</p>
+
+<p>We take pride in our inclusive and supportive school community, where every student is valued and encouraged to pursue their passions and interests. Our state-of-the-art facilities and resources provide an ideal setting for academic and extracurricular pursuits, fostering a love for learning and exploration.</p>
+
+<p>Thank you for choosing Sanjoe Public School for your child’s education. We look forward to partnering with you in nurturing the next generation of leaders and innovators.</p>
+
+Warm regards,
+
+<p>Sr. Rosily EV</p>
+Principal 
+<pSanjoe Public School, Kaniyaram</p>
+
+        </div>
+        <div id="facilities" class="tab-content facilities">
+            <h2>Facilities</h2>
+            <p>Our school offers state-of-the-art facilities to enhance the learning experience:</p>
+            <img src="gallery/facility/1.jpg" alt="Facility 1">
+            <img src="gallery/facility/2.jpg" alt="Facility 2">
+            <img src="gallery/facility/3.jpg" alt="Facility 3">
+        </div>
+        <div id="campus" class="tab-content">
+            <h2>Campus</h2>
+            <p>Sanjoe Public School is located in a serene environment, providing the perfect setting for students to learn and grow. Our campus is equipped with modern infrastructure, lush green playgrounds, and well-maintained gardens.</p>
+        </div>
+        <div id="fees" class="tab-content">
+            <h2>Fee Structure</h2>
+            <p>Our fee structure is designed to be affordable while ensuring the highest quality of education:</p>
+            <ul>
+                <li>Pre-KG to UKG      : Rs 13500 per year</li>
+                <li>Grade 1 to 4       : Rs 16500 per year</li>
+                <li>Grade 5 to 7       : Rs 18500 per year</li>
+                <li>Grade 8            : Rs 20500 per year</li>
+                <li>Grade 9 & 10       : Rs 22500 per year</li>
+            </ul>
+        </div>
+        <div id="students" class="tab-content">
+            <h2>Students</h2>
+            <p>We have a diverse student body, with students from various backgrounds coming together to learn and grow. Our students are encouraged to participate in various academic and extracurricular activities to develop their skills and talents.</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Class</th>
+                        <th>Student Strength</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>LKG</td>
+                        <td>41</td>
+                    </tr>
+                    <tr>
+                        <td>UKG</td>
+                        <td>44</td>
+                    </tr>
+                    <tr>
+                        <td>Class 1</td>
+                        <td>51</td>
+                    </tr>
+                    <tr>
+                        <td>Class 2</td>
+                        <td>41</td>
+                    </tr>
+                    <tr>
+                        <td>Class 3</td>
+                        <td>25</td>
+                    </tr>
+                    <tr>
+                        <td>Class 4</td>
+                        <td>32</td>
+                    </tr>
+                    <tr>
+                        <td>Class 5</td>
+                        <td>33</td>
+                    </tr>
+                    <tr>
+                        <td>Class 6</td>
+                        <td>30</td>
+                    </tr>
+                    <tr>
+                        <td>Class 7</td>
+                        <td>30</td>
+                    </tr>
+                    <tr>
+                        <td>Class 8</td>
+                        <td>17</td>
+                    </tr>
+                    <tr>
+                        <td>Class 9</td>
+                        <td>21</td>
+                    </tr>
+                    <tr>
+                        <td>Class 10</td>
+                        <td>15</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div id="staff" class="tab-content">
+            <h2>Teaching Staff</h2>
+            <p>Our team of dedicated and experienced teachers is committed to providing quality education and supporting the personal growth of each student.</p><a href="PDF/TEACHING-STAFF.pdf">View</a>
+        </div>
+        <div id="others" class="tab-content">
+            <h2>Other Information</h2>
+            <p>For more information about Sanjoe Public School, please visit our other pages or contact us directly.</p>
+        </div>
+    </div>
+    <footer>
+        <p>&copy; 2024 Sanjoe Public School Kaniyaram. All rights reserved.</p>
+        <p>Contact Us: 9961452061 | sanjoeblessedschool@gmail.com</p>
+        <p>Location: Kaniyaram, Wayanad, Kerala, India</p>
+    </footer>
+    <script>
+        function openTab(tabId) {
+            var tabs = document.querySelectorAll('.tab-content');
+            tabs.forEach(function(tab) {
+                tab.classList.remove('active');
+            });
+            document.getElementById(tabId).classList.add('active');
+        }
+        // Default to showing the Principal's Message tab
+        openTab('principal');
+    </script>
+</body>
+</html>
+

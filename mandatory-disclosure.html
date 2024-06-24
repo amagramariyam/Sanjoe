@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mandatory Disclosure - Sanjoe Public School Kaniyaram</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f8ff;
+            color: #000;
+            text-align: center;
+        }
+        header {
+            background-color: #003366;
+            color: #ffffff;
+            padding: 1em 0;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #0055a5;
+        }
+        nav a {
+            color: #ffffff;
+            padding: 1em;
+            text-decoration: none;
+        }
+        nav a:hover {
+            background-color: #003366;
+        }
+        section {
+            padding: 2em;
+        }
+        .pdf-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .pdf-item {
+            background-color: #ffffff;
+            border: 1px solid #0055a5;
+            margin: 1em;
+            padding: 1em;
+            width: 200px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .pdf-item:hover {
+            background-color: #f0f8ff;
+        }
+        .pdf-viewer {
+            margin-top: 2em;
+        }
+        iframe {
+            width: 100%;
+            height: 600px;
+            border: none;
+        }
+        footer {
+            background-color: #003366;
+            color: #ffffff;
+            text-align: center;
+            padding: 1em 0;
+        }
+        @media (max-width: 600px) {
+            nav {
+                flex-direction: column;
+            }
+            .pdf-item {
+                width: 100%;
+                max-width: 100%;
+            }
+            iframe {
+                height: 400px;
+            }
+        }
+    </style>
+    <script>
+        function showPDF(pdfUrl) {
+            document.getElementById('pdf-iframe').src = pdfUrl;
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Sanjoe Public School Kaniyaram</h1>
+        <h2>Mandatory Disclosure</h2>
+    </header>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="mandatory-disclosure.html">Mandatory Disclosure</a>
+    </nav>
+    <section>
+        <div class="pdf-list">
+            <div class="pdf-item" onclick="showPDF('PDF/AFFILIATION-LETTER.pdf')">Affiliation Letter</div>
+            <div class="pdf-item" onclick="showPDF('PDF/TRUST-CERTIFICATE.pdf')">Trust Certificate</div>
+            <div class="pdf-item" onclick="showPDF('PDF/NOC.pdf')">NOC</div>
+<div class="pdf-item" onclick="showPDF('PDF/RECOGNITION-CERTIFICATE.pdf')">Recognition Certificate</div>
+<div class="pdf-item" onclick="showPDF('PDF/BUILDING-SAFETY.pdf')">Building Safety</div>
+<div class="pdf-item" onclick="showPDF('PDF/FIRE-SAFETY.pdf')">Fire Safety</div>
+<div class="pdf-item" onclick="showPDF('PDF/SELF-CERTIFICATION.pdf')">Self Certification</div>
+<div class="pdf-item" onclick="showPDF('PDF/SANITATION-CERTIFICATE.pdf')">Sanitation Certificate</div>
+<div class="pdf-item" onclick="showPDF('PDF/FEE-STRUCTURE.pdf')">Fee Structure</div>
+<div class="pdf-item" onclick="showPDF('PDF/ANNUAL-ACADEMIC-CALENDER.pdf')">Annual Academic Calender</div>
+<div class="pdf-item" onclick="showPDF('PDF/SMC.pdf')">SMC</div>
+<div class="pdf-item" onclick="showPDF('PDF/PTA.pdf')">PTA</div>
+<div class="pdf-item" onclick="showPDF('PDF/LAST-3-YEAR-RESULT.pdf')">Last 3 Year Result</div>
+<div class="pdf-item" onclick="showPDF('PDF/TC.pdf')">TC</div>
+<div class="pdf-item" onclick="showPDF('PDF/TEACHING-STAFF.pdf')">Teaching Staff</div>
+<div class="pdf-item" onclick="showPDF('PDF/LAND-CERTIFICATE.pdf')">Land Certificate</div>
+
+
+            <!-- Add more PDF items as needed -->
+        </div>
+        <div class="pdf-viewer">
+            <iframe id="pdf-iframe" src=""></iframe>
+        </div>
+    </section>
+    <footer>
+        <p>&copy; 2024 Sanjoe Public School Kaniyaram. All rights reserved.</p>
+    </footer>
+</body>
+</html>
+
