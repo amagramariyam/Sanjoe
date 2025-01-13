@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Staff - Sanjoe Public School</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        .header {
+            background-color: #003366;
+            color: white;
+            text-align: center;
+            padding: 1em 0;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+
+        .header a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2em;
+            margin-top: 10px;
+            display: inline-block;
+        }
+
+        .header a:hover {
+            text-decoration: underline;
+        }
+/* Emblem Styles */
+        .emblem {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: url('logo.jpg') no-repeat center center / cover;
+            margin: 0 auto 15px auto;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            animation: flip 3s infinite;
+        }
+
+        @keyframes flip {
+            0%, 100% {
+                transform: rotateY(0);
+            }
+            50% {
+                transform: rotateY(180deg);
+            }
+        }
+
+
+        .staff-page {
+            padding: 2em;
+        }
+
+        .staff-header {
+            text-align: center;
+            margin-bottom: 2em;
+        }
+
+        .staff-header h1 {
+            font-size: 2.5em;
+            color: #003366;
+            font-weight: bold;
+        }
+
+        .staff-header p {
+            font-size: 1.2em;
+            color: #555;
+        }
+
+        .staff-section {
+            margin-bottom: 3em;
+        }
+
+        .staff-section h2 {
+            font-size: 2em;
+            color: #003366;
+            margin-bottom: 1em;
+            text-align: center;
+        }
+
+        .staff-cards {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        .staff-card {
+            background-color: #ffffff;
+            border-radius: 10px;
+            width: 250px;
+            margin: 1em;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .staff-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .staff-photo {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 2px solid #003366;
+        }
+
+        .staff-info {
+            padding: 1em;
+        }
+
+        .staff-info h3 {
+            font-size: 1.5em;
+            color: #003366;
+            margin: 0.5em 0;
+        }
+
+        .staff-info .designation {
+            font-size: 1.1em;
+            color: #666;
+        }
+
+        .staff-info .qualification {
+            font-size: 1em;
+            color: #888;
+        }
+
+        /* Footer Styles */
+        .footer {
+            background-color: #003366;
+            color: white;
+            text-align: center;
+            padding: 2em 0;
+        }
+
+        .footer h3 {
+            margin-bottom: 1em;
+        }
+
+        .footer p {
+            margin: 0.5em 0;
+        }
+
+        .footer a {
+            color: #ffcc00;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+     <!-- Header Section with School Name and Emblem -->
+    <div class="header">
+        <div class="emblem"></div>
+        <h1>Sanjoe Public School</h1>
+        <a href="index.html">Back to Home</a>
+    </div>
+
+    <div class="staff-page">
+        <div class="staff-header">
+            <h1>Meet Our Staff</h1>
+            <p>Our dedicated team of professionals who contribute to the growth and success of Sanjoe Public School.</p>
+        </div>
+
+        <!-- Teachers Section -->
+        <div class="staff-section">
+            <h2>Teaching Staff</h2>
+            <div class="staff-cards">
+                <!-- Teacher Cards (25 teachers) -->
+                <div class="staff-card">
+                    <img src="staff/1.jpg" alt="Teacher 1" class="staff-photo">
+                    <div class="staff-info">
+                        <h3>Rosily E V</h3>
+                        <p class="designation">Principal</p>
+                        <p class="qualification">M.A English, B.Ed.</p>
+                    </div>
+                </div>
+                <!-- Repeat for other teachers -->
+<div class="staff-card">
+                    <img src="staff/2.jpg" alt="Teacher 1" class="staff-photo">
+                    <div class="staff-info">
+                        <h3>Immaculate Mary</h3>
+                        <p class="designation">Mathematics Teacher</p>
+                        <p class="qualification">M.Sc., B.Ed.</p>
+                    </div>
+                </div>
+                <!-- Repeat for other teachers -->
+<div class="staff-card">
+                    <img src="staff/3.jpg" alt="Teacher 1" class="staff-photo">
+                    <div class="staff-info">
+                        <h3>Sabu C K</h3>
+                        <p class="designation">Social Teacher</p>
+                        <p class="qualification">M.A, B.Ed.</p>
+                    </div>
+                </div>
+                <!-- Repeat for other teachers -->
+<div class="staff-card">
+                    <img src="staff/4.jpg" alt="Teacher 1" class="staff-photo">
+                    <div class="staff-info">
+                        <h3>Jini Joseph</h3>
+                        <p class="designation">Science Teacher</p>
+                        <p class="qualification">M.Sc, B.Ed.</p>
+                    </div>
+                </div>
+                <!-- Repeat for other teachers -->
+<div class="staff-card">
+                    <img src="staff/5.jpg" alt="Teacher 1" class="staff-photo">
+                    <div class="staff-info">
+                        <h3>Linson R P</h3>
+                        <p class="designation">Malayalam Teacher</p>
+                        <p class="qualification">M.A, B.Ed.</p>
+                    </div>
+                </div>
+                <!-- Repeat for other teachers -->
+<div class="staff-card">
+                    <img src="staff/6.jpg" alt="Teacher 1" class="staff-photo">
+                    <div class="staff-info">
+                        <h3>Jobby Kurian</h3>
+                        <p class="designation">English Teacher</p>
+                        <p class="qualification">B.A,B.Ed. </p>
+                    </div>
+                </div>
+                <!-- Repeat for other teachers -->
+<div class="staff-card">
+                    <img src="staff/7.jpg" alt="Teacher 1" class="staff-photo">
+                    <div class="staff-info">
+                        <h3>Albin Augustin</h3>
+                        <p class="designation">Mathematics Teacher</p>
+                        <p class="qualification">B.A, D.El.Ed.</p>
+                    </div>
+                </div>
+                <!-- Repeat for other teachers -->
+<div class="staff-card">
+                    <img src="staff/8.jpg" alt="Teacher 1" class="staff-photo">
+                    <div class="staff-info">
+                        <h3>Bajil Thankachan</h3>
+                        <p class="designation">Librarian</p>
+                        <p class="qualification"></p>
+                    </div>
+                </div>
+                <!-- Repeat for other teachers -->
+
+<div class="staff-card">
+                    <img src="staff/9.jpg" alt="Teacher 1" class="staff-photo">
+                    <div class="staff-info">
+                        <h3>Laya Mathew</h3>
+                        <p class="designation">Hindi Teacher</p>
+                        <p class="qualification">B.A, TTC</p>
+                    </div>
+                </div>
+                <!-- Repeat for other teachers -->
+<div class="staff-card">
+                    <img src="staff/10.jpg" alt="Teacher 1" class="staff-photo">
+                    <div class="staff-info">
+                        <h3>Jisha Sebastian</h3>
+                        <p class="designation">K.G Teacher</p>
+                        <p class="qualification">NTTC</p>
+                    </div>
+                </div>
+                <!-- Repeat for other teachers -->
+<div class="staff-card">
+                    <img src="staff/11.jpg" alt="Teacher 1" class="staff-photo">
+                    <div class="staff-info">
+                        <h3>Jomol K T</h3>
+                        <p class="designation">KG Teacher</p>
+                        <p class="qualification">NTTC</p>
+                    </div>
+                </div>
+                <!-- Repeat for other teachers -->
+<div class="staff-card">
+                    <img src="staff/12.jpg" alt="Teacher 1" class="staff-photo">
+                    <div class="staff-info">
+                        <h3>SHEENA C U</h3>
+                        <p class="designation">KG Teacher</p>
+                        <p class="qualification">NTTC</p>
+                    </div>
+                </div>
+                <!-- Repeat for other teachers -->
+<div class="staff-card">
+                    <img src="staff/13.jpg" alt="Teacher 1" class="staff-photo">
+                    <div class="staff-info">
+                        <h3>Simi K M</h3>
+                        <p class="designation">KG Teacher</p>
+                        <p class="qualification">NTTC</p>
+                    </div>
+                </div>
+                <!-- Repeat for other teachers -->
+<div class="staff-card">
+                    <img src="staff/14.jpg" alt="Teacher 1" class="staff-photo">
+                    <div class="staff-info">
+                        <h3>Leelamma Varkey</h3>
+                        <p class="designation">Malayalam Teacher</p>
+                        <p class="qualification">M.A, B.Ed.</p>
+                    </div>
+                </div>
+                <!-- Repeat for other teachers -->
+
+
+                <div class="staff-card">
+                    <img src="staff/15.jpg" alt="Teacher 2" class="staff-photo">
+                    <div class="staff-info">
+                        <h3>Ranjitha Rodrigues</h3>
+                        <p class="designation">English Teacher</p>
+                        <p class="qualification">	B.A, B.Ed.</p>
+                    </div>
+                </div>
+
+<div class="staff-card">
+                    <img src="staff/16.jpg" alt="Teacher 2" class="staff-photo">
+                    <div class="staff-info">
+                        <h3>Joshna George</h3>
+                        <p class="designation">Science Teacher</p>
+                        <p class="qualification">B.A, B.Ed.</p>
+                    </div>
+                </div>
+<div class="staff-card">
+                    <img src="staff/17.jpg" alt="Teacher 2" class="staff-photo">
+                    <div class="staff-info">
+                        <h3>Sindhu</h3>
+                        <p class="designation">Social Teacher</p>
+                        <p class="qualification">B.A, B.Ed.</p>
+                    </div>
+                </div>
+
+<div class="staff-card">
+                    <img src="staff/18.jpg" alt="Teacher 2" class="staff-photo">
+                    <div class="staff-info">
+                        <h3>Bibin Jose</h3>
+                        <p class="designation">Physical Education Teacher</p>
+                        <p class="qualification">BPEd.</p>
+                    </div>
+                </div>
+
+<div class="staff-card">
+                    <img src="staff/19.jpg" alt="Teacher 2" class="staff-photo">
+                    <div class="staff-info">
+                        <h3>Amal Joy</h3>
+                        <p class="designation">Computer Teacher</p>
+                        <p class="qualification">M.S.c Computer</p>
+                    </div>
+		</div>
+
+<div class="staff-card">
+                    <img src="staff/20.jpg" alt="Teacher 2" class="staff-photo">
+                    <div class="staff-info">
+                        <h3>Jessy V Y</h3> 
+                        <p class="designation">Social Teacher</p>
+                        <p class="qualification">M.A, B.Ed</p>
+                    </div>
+                </div>
+
+<div class="staff-card">
+                    <img src="staff/21.jpg" alt="Teacher 2" class="staff-photo">
+                    <div class="staff-info">
+                        <h3>Minimole K J</h3>
+                        <p class="designation">Social Teacher</p>
+                        <p class="qualification">B.S.c, B.Ed</p>
+                    </div>
+                </div>
+
+
+ 
+
+                <!-- Add 23 more teacher cards here -->
+
+            </div>
+        </div>
+
+        <!-- Non-Teaching Staff Section -->
+       <div class="staff-section">
+            <!--<h2>Non-Teaching Staff</h2>-->
+            <div class="staff-cards">
+                <!-- Non-Teaching Staff Cards (5 non-teaching staff) -->
+                <div class="staff-card">
+                    <!-- <img src="staff/nonteaching/1.jpg" alt="Staff 1" class="staff-photo">
+                    <div class="staff-info">
+                        <h3>Mary Johnson</h3>
+                        <p class="designation">Office Administrator</p>
+                        <p class="qualification">B.Com</p>
+                    </div>
+                </div>
+                <div class="staff-card">
+                    <img src="staff/nonteaching/2.jpg" alt="Staff 2" class="staff-photo">
+                    <div class="staff-info">
+                        <h3>Robert Lee</h3>
+                        <p class="designation">Lab Assistant</p>
+                        <p class="qualification">B.Sc. Chemistry</p>
+                    </div>
+                </div>
+
+<div class="staff-card">
+                    <img src="staff/nonteaching/3.jpg" alt="Staff 2" class="staff-photo">
+                    <div class="staff-info">
+                        <h3>Robert Lee</h3>
+                        <p class="designation">Lab Assistant</p>
+                        <p class="qualification">B.Sc. Chemistry</p>
+                    </div>
+                </div>
+
+<div class="staff-card">
+                    <img src="staff/nonteaching/4.jpg" alt="Staff 2" class="staff-photo">
+                    <div class="staff-info">
+                        <h3>Robert Lee</h3>
+                        <p class="designation">Lab Assistant</p>
+                        <p class="qualification">B.Sc. Chemistry</p>
+                    </div>
+                </div>
+
+<div class="staff-card">
+                    <img src="staff/nonteaching/5.jpg" alt="Staff 2" class="staff-photo">
+                    <div class="staff-info">
+                        <h3>Robert Lee</h3>
+                        <p class="designation">Lab Assistant</p>
+                        <p class="qualification">B.Sc. Chemistry</p>
+                    </div>
+                </div> -->
+
+
+                <!-- Add  more non-teaching staff cards here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <div class="footer">
+        <h3>About Sanjoe Public School</h3>
+        <p>Sanjoe Public School, located in Kaniyaram, provides a holistic learning environment for students, fostering both academic and extracurricular excellence.</p>
+        <p>For more information, visit our <a href="index.html">Homepage</a>.</p>
+        <p>Contact Us: <br>Email: sanjoeblessedschool@gmail.com | Phone: +91 996 145 2061 </p>
+    </div>
+
+</body>
+</html>
