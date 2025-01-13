@@ -24,6 +24,7 @@
         .date-time {
             font-size: 0.8em;
             font-weight: bold;
+	    color: #6495ED;
         }
         header {
             background-color: #003366;
@@ -135,12 +136,50 @@
             height: 150px;
             object-fit: cover;
         }
-.visionary img {
-            border-radius: 10%;
-            width: 600px;
-            height: 800px;
-            object-fit: cover;
-        }
+#video-section {
+    padding: 2em;
+    background-color: #CCCCFF;
+    text-align: center;
+}
+
+.video-container {
+    width: 80%;
+    max-width: 1400px;
+    margin: 0 auto;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+video {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 10px;
+}
+
+.visionary-container {
+    display: flex;
+    justify-content: center;
+    margin: 2em 0;
+}
+
+.visionary-box {
+    width: 600px;
+    padding: 1em;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    text-align: center;
+}
+
+.visionary-box img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    object-fit: cover;
+}
         .events {
             width: 50%;
             background-color: #ffcccc;
@@ -162,25 +201,92 @@
             0% { transform: translateY(450%); }
             100% { transform: translateY(-20%); }
         }
-        .welcome-section {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: auto;
-            padding: 2em;
-            background-color: #ffffff;
-            border: 2px solid #003366;
-            margin: 2em;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            position: relative;
-            animation: zoomIn 1s ease-out;
-        }
+ @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+.welcome-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: auto;
+    padding: 2em;
+    background-color: #ffffff;
+    border: 2px solid #003366;
+    margin: 2em;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+    animation: zoomIn 1s ease-out;
+    font-family: 'Poppins', sans-serif; /* Apply the attractive font */
+    text-align: justify; /* Justify the text */
+}
+
+.welcome-section p {
+    font-size: 1.1em; /* Adjust the size for readability */
+    line-height: 1.8; /* Add space between lines */
+    letter-spacing: 0.5px; /* Slight letter-spacing for clarity */
+    color: #333; /* Dark text color for contrast */
+    font-weight: 400; /* Regular weight */
+}
+
+.welcome-circle {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background-color: #003366;
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2em;
+    font-weight: bold;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    transform-style: preserve-3d;
+    perspective: 1000px;
+    animation: flip 6s infinite;
+    cursor: pointer;
+}
+
+.welcome-circle .front,
+.welcome-circle .back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+}
+
+.welcome-circle .front {
+    background-color: #003366;
+    color: #ffffff;
+}
+
+.welcome-circle .back {
+    background-color: #ffffff;
+    color: #003366;
+    transform: rotateY(180deg);
+    background-image: url('logo.jpg'); /* Replace 'logo.jpg' with your school emblem file path */
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+@keyframes flip {
+    0% { transform: rotateY(0); }
+    50% { transform: rotateY(180deg); }
+    100% { transform: rotateY(360deg); }
+}
+
         @keyframes zoomIn {
             from { transform: scale(0.5); opacity: 0; }
             to { transform: scale(1); opacity: 1; }
         }
         .welcome-section h2 {
-            color: #003366;
+            color: #FFFFFF;
             margin-bottom: 1em;
         }
         footer {
@@ -308,18 +414,35 @@
         </div>
     </section>
     <div class="welcome-section">
-        <h2>Welcome To Sanjoe Public School</h2>
-        <div>
-            <p>Sanjoe Public School in Kaniyaram is a beacon of education, known for its commitment to nurturing young minds from pre-kg to class 10. Affiliated with the Central Board of Secondary Education (CBSE), the school offers a comprehensive curriculum designed to instill academic excellence, moral values, and holistic development in its students.</p>
-            <p>The school campus is a vibrant hub of learning and growth, where dedicated educators employ innovative teaching methods to make education engaging and effective. Sanjoe Public School prides itself on its state-of-the-art facilities, well-equipped classrooms, and a wide range of extracurricular activities that ensure the all-round development of students, fostering their intellectual, emotional, and physical growth.</p>
-            <p>At Sanjoe, students are encouraged to explore their interests and talents through various clubs, sports, arts, and cultural programs. The school’s focus on creating a supportive and inclusive environment helps students build confidence, develop leadership skills, and become well-rounded individuals.</p>
-            <p>Sanjoe Public School in Kaniyaram believes in the potential of every student and strives to create an atmosphere that encourages curiosity, creativity, and a lifelong love for learning. Through innovative teaching methodologies and personalized attention, the school aims to unlock each student's unique talents and aspirations, preparing them to excel in an ever-changing world.</p>
-            <p>With its unwavering commitment to excellence and a nurturing environment conducive to growth, Sanjoe Public School in Kaniyaram stands as a beacon of quality education, shaping the future leaders of tomorrow.</p>
+    <div class="welcome-circle">
+        <div class="front">Welcome to<br>Sanjoe School</div>
+        <div class="back"></div>
+    </div>
+    <div>
+            <p>Sanjoe Public School in Kaniyaram is a beacon of education, known for its commitment to nurturing young minds from pre-kg to class 10. Affiliated with the Central Board of Secondary Education (CBSE), the school offers a comprehensive curriculum designed to instill academic excellence, moral values, and holistic development in its students.
+            The school campus is a vibrant hub of learning and growth, where dedicated educators employ innovative teaching methods to make education engaging and effective. Sanjoe Public School prides itself on its state-of-the-art facilities, well-equipped classrooms, and a wide range of extracurricular activities that ensure the all-round development of students, fostering their intellectual, emotional, and physical growth.
+            At Sanjoe, students are encouraged to explore their interests and talents through various clubs, sports, arts, and cultural programs. The school’s focus on creating a supportive and inclusive environment helps students build confidence, develop leadership skills, and become well-rounded individuals.
+            Sanjoe Public School in Kaniyaram believes in the potential of every student and strives to create an atmosphere that encourages curiosity, creativity, and a lifelong love for learning. Through innovative teaching methodologies and personalized attention, the school aims to unlock each student's unique talents and aspirations, preparing them to excel in an ever-changing world.
+            With its unwavering commitment to excellence and a nurturing environment conducive to growth, Sanjoe Public School in Kaniyaram stands as a beacon of quality education, shaping the future leaders of tomorrow.</p>
         </div>
     </div>
 
-<div class="visionary img">
-<p><img src="visionaries.jpg" alt="OUR VISIONARIES" width=550></p></div>
+<section id="video-section">
+     <!-- <h2>School Highlights</h2> -->
+    <div class="video-container">
+        <video id="highlight-video" controls muted>
+            <source src="school-highlight.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+</section>
+
+
+<div class="visionary-container">
+    <div class="visionary-box">
+        <img src="visionaries.jpg" alt="Our Visionaries">
+    </div>
+</div>
 
     <section id="staff">
         <h2>Our Staff</h2>
@@ -380,6 +503,37 @@
                 <img src="staff/14.jpg" alt="Sr. Leelamma Varkey">
                 <p>Sr. Leelamma Varkey</p>
             </div>
+<div class="staff-member">
+                <img src="staff/15.jpg" alt="Ms.Ranjitha Rodrigues">
+                <p>Ms.Ranjitha Rodrigues</p>
+            </div>
+<div class="staff-member">
+                <img src="staff/16.jpg" alt="Mrs.Joshna George">
+                <p>Mrs.Joshna George</p>
+            </div>
+<div class="staff-member">
+                <img src="staff/17.jpg" alt="Sr.Sindhu">
+                <p>Sr.Sindhu</p>
+            </div>
+<div class="staff-member">
+                <img src="staff/18.jpg" alt="Mr.Bibin Jose">
+                <p>Mr.Bibin Jose</p>
+            </div>
+<div class="staff-member">
+                <img src="staff/19.jpg" alt="Mr.Amal Joy">
+                <p>Mr.Amal Joy</p>
+            </div>
+<div class="staff-member">
+                <img src="staff/20.jpg" alt="Sr.Jessy V Y">
+                <p>Sr. Jessy V Y</p>
+            </div>
+<div class="staff-member">
+                <img src="staff/21.jpg" alt="Mrs. Minimole K J">
+                <p>Mrs.Minimole K J</p>
+            </div>
+
+
+
             <!-- Add more staff members as needed -->
 
         </div>
@@ -458,6 +612,22 @@
         scrollToTopBtn.addEventListener('click', () => {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
+
+const video = document.getElementById('highlight-video');
+    const videoSection = document.getElementById('video-section');
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                video.play();
+            } else {
+                video.pause();
+            }
+        });
+    }, { threshold: 0.5 });
+
+    observer.observe(videoSection);
+
     </script>
 </body>
 </html>
