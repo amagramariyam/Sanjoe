@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration - Sanjoe Public School</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f8ff;
+            color: #333;
+        }
+
+        .emblem-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .emblem {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            perspective: 1000px;
+        }
+
+        .emblem-inner {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            animation: flip 5s infinite;
+        }
+
+        .emblem-side {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 2px solid #003366;
+            border-radius: 50%;
+            background-color: #fff;
+        }
+
+        .emblem-front {
+            background: url('sanjoe-emblem.png') no-repeat center;
+            background-size: cover;
+        }
+
+        .emblem-back {
+            background-color: #003366;
+            color: #fff;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        .emblem-inner:hover {
+            animation-play-state: paused;
+        }
+
+        @keyframes flip {
+            0%, 100% {
+                transform: rotateY(0);
+            }
+            50% {
+                transform: rotateY(180deg);
+            }
+        }
+
+        header {
+            background-color: #003366;
+            color: #fff;
+            padding: 20px 10px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+        }
+
+        .contact-number {
+            margin: 10px 0;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        form {
+            width: 80%;
+            max-width: 600px;
+            margin: 30px auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        form h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #003366;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            border-color: #003366;
+            outline: none;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+            color: #fff;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .submit-btn:hover {
+            background-color: #218838;
+        }
+
+        .home-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #003366;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .home-link:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            background-color: #003366;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="emblem-container">
+        <div class="emblem">
+            <div class="emblem-inner">
+                <div class="emblem-side emblem-front"></div>
+                <div class="emblem-side emblem-back">
+                    <p>Welcome to Sanjoe</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <header>
+        <h1>Sanjoe Public School Kaniyaram</h1>
+        <p class="contact-number">Contact: 9961452061</p>
+    </header>
+    <form id="registrationForm">
+        <h2>Registration Form</h2>
+        <div class="form-group">
+            <label for="student-name">Name of the Student</label>
+            <input type="text" id="student-name" name="entry.888183275" placeholder="Enter full name" required>
+        </div>
+        <div class="form-group">
+            <label for="dob">Date of Birth</label>
+            <input type="date" id="dob" name="entry.597865858" required>
+        </div>
+        <div class="form-group">
+            <label for="class">Class</label>
+            <select id="class" name="entry.1540099977" required>
+                <option value="" disabled selected>Select class</option>
+                <option value="LKG">LKG</option>
+                <option value="UKG">UKG</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="text" id="phone" name="entry.373570851" placeholder="Enter phone number" required>
+        </div>
+        <button type="submit" class="submit-btn">Submit</button>
+
+        <a href="index.html" class="home-link">Back to Homepage</a>
+    </form>
+    <footer>
+        <p>&copy; 2024 Sanjoe Public School. All rights reserved.</p>
+    </footer>
+    <script>
+        document.getElementById('registrationForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the default form submission
+
+            // Collect form data
+            const formData = new FormData(this);
+
+            // Send data to Google Forms
+            fetch('https://docs.google.com/forms/u/0/d/e/1FAIpQLSdDyF1SqV3GlKsYKdWZpqw-XfXPouQrUaZB7FwhRG8YPytLCg/formResponse', {
+                method: 'POST',
+                body: formData,
+                mode: 'no-cors'
+            }).then(() => {
+                // Display success message
+                alert('Successfully Registered!');
+
+                // Clear all input fields
+                this.reset();
+            }).catch((error) => {
+                // Handle errors (optional)
+                alert('An error occurred while submitting the form. Please try again.');
+                console.error('Form submission error:', error);
+            });
+        });
+    </script>
+</body>
+</html>
