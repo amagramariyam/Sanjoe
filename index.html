@@ -14,6 +14,81 @@
             color: #000;
             text-align: center;
         }
+
+ /* Add popup styles */
+        .popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            max-width: 400px;
+            background-color: #FAF0DD;
+            border: 2px solid #003366;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            z-index: 1000;
+            display: none;
+            animation: popupEffect 0.5s ease-in-out;
+        }
+
+        .popup h2 {
+            margin: 0;
+            font-size: 1.5em;
+            color: #003366;
+        }
+
+        .popup p {
+            margin: 1em 0;
+            font-size: 1em;
+            color: #555;
+        }
+
+        .popup .popup-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .popup .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            color: #ffffff;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .popup .close-btn {
+            background-color: #003366;
+        }
+
+        .popup .close-btn:hover {
+            background-color: #555;
+        }
+
+        .popup .enroll-btn {
+            background-color: #28a745;
+        }
+
+        .popup .enroll-btn:hover {
+            background-color: #218838;
+        }
+
+        @keyframes popupEffect {
+            from {
+                opacity: 0;
+                transform: translate(-50%, -60%);
+            }
+            to {
+                opacity: 1;
+                transform: translate(-50%, -50%);
+            }
+        }
+
         .header-top {
             display: flex;
             justify-content: space-between;
@@ -563,8 +638,36 @@ video {
         <p>Contact Us: 9961452061 | sanjoeblessedschool@gmail.com</p>
         <p>Location: Kaniyaram, Wayanad, Kerala, India</p>
     </footer>
+
+ <!-- Popup Window -->
+    <div class="popup" id="admission-popup">
+        <h2>ADMISSION STARTED 2025-2026</h2>
+        <p>Enroll now to secure your child's future at </p><p>Sanjoe Public School</p>
+        <div class="popup-buttons">
+            <button class="btn close-btn" onclick="closePopup()">Close</button>
+            <a href="registration.html" class="btn enroll-btn">Enroll</a>
+        </div>
+    </div>
+
     <button class="scroll-to-top" id="scrollToTopBtn">↑</button>
     <script>
+
+// Show the popup on page load
+        document.addEventListener("DOMContentLoaded", function () {
+            const currentDate = new Date();
+            const startDate = new Date("2025-01-01");
+            const endDate = new Date("2025-03-31");
+
+            if (currentDate >= startDate && currentDate <= endDate) {
+                document.getElementById("admission-popup").style.display = "block";
+            }
+        });
+
+        // Close popup function
+        function closePopup() {
+            document.getElementById("admission-popup").style.display = "none";
+        }
+
         function updateTime() {
             const now = new Date();
             const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' };
