@@ -4,143 +4,328 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kindergarten - Sanjoe Public School</title>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Baloo 2', cursive, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f0f8ff;
-            color: #000;
-            text-align: center;
+            background: linear-gradient(to bottom, #e0f7fa, #a5d6a7);
+            color: #444;
+            overflow-x: hidden;
         }
         header {
-            background-color: #003366;
-            color: #ffffff;
-            padding: 1em 0;
+            background: #003366;
+            color: #fff;
+            padding: 2rem 1rem;
+            text-align: center;
+            position: relative;
+        }
+        header .emblem {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 1rem;
+            border-radius: 50%;
+            background: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        header .emblem img {
+            width: 80%;
+        }
+        header h1 {
+            font-size: 2.8rem;
+            font-family: 'Playfair Display', serif;
+            margin: 0.5rem 0;
+            animation: colorChange 4s infinite alternate;
+        }
+        header h2 {
+            font-size: 1.9rem;
+            margin: 0;
         }
         nav {
             display: flex;
             justify-content: center;
-            background-color: #008000;
+            gap: 1rem;
+            background: #4caf50;
+            padding: 1rem 0;
             position: relative;
+            top: 0;
+            z-index: 10;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
         nav a {
-            color: #ffffff;
-            padding: 1em;
+            color: #fff;
+            font-size: 1.1rem;
             text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            transition: background 0.3s;
         }
         nav a:hover {
-            background-color: #cbd394;
+            background: #81c784;
+        }
+        .content-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 2rem;
+            padding: 3rem 1rem;
         }
         .content {
-            padding: 2em;
+            flex: 2;
+            text-align: center;
         }
         .content h2 {
-            color: #003366;
-            margin-bottom: 1em;
+            font-size: 2.5rem;
+            color: #0288d1;
+            margin-bottom: 1.5rem;
         }
-        .gallery-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            margin: 2em 0;
+        .content p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            max-width: 800px;
+            margin: 0 auto 2rem;
         }
-        .gallery-container .photo-box {
-            position: relative;
-            width: 250px;
-            height: 250px;
-            margin: 1em;
+       .notice-board {
+            flex: 1;
+            background: #f9fbe7;
+            border: 3px dashed #4caf50;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             overflow: hidden;
-            border: 2px solid #ccc;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
+            height: 300px;
+            position: relative;
+            border-radius: 10px;
         }
-        .gallery-container .photo-box:hover {
-            transform: scale(1.1);
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+
+        .notice-board h3 {
+            margin: 0;
+            padding: 0.5rem;
+            background: #0288d1;
+            color: white;
+            text-align: center;
+            font-size: 1.2rem;
+            position: sticky;
+            top: 0;
+            z-index: 10;
         }
-        .gallery-container img {
+
+        .scrolling-content {
+            position: absolute;
+            bottom: 0;
+            height: calc(100% - 2rem);
             width: 100%;
-            height: 100%;
-            object-fit: cover;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column-reverse;
+        }
+
+        .scrolling-content ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            animation: scrollUp 10s linear infinite;
+        }
+
+        .scrolling-content li {
+            padding: 0.5rem;
+            text-align: center;
+            background: #e8f5e9;
+            margin: 0.2rem 0;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        @keyframes scrollUp {
+            0% {
+                transform: translateY(100%);
+            }
+            100% {
+                transform: translateY(-100%);
+            }
+        }
+
+        @keyframes colorChange {
+            0% {
+                color: #ff5722;
+            }
+            25% {
+                color: #3f51b5;
+            }
+            50% {
+                color: #8bc34a;
+            }
+            75% {
+                color: #f44336;
+            }
+            100% {
+                color: #9c27b0;
+            }
+        }
+
+        .gallery-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 2rem;
+        }
+        .photo-box {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
             transition: transform 0.3s;
         }
-        .gallery-container img:hover {
-            transform: scale(1.1);
+        .photo-box:hover {
+            transform: scale(1.05);
         }
-        .gallery-container .photo-box p {
+        .photo-box img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .photo-box p {
             position: absolute;
-            bottom: 10px;
-            left: 10px;
-            color: white;
-            background-color: rgba(0, 0, 0, 0.5);
-            padding: 5px;
-        }
-        footer {
-            background-color: #003366;
-            color: #ffffff;
+            bottom: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            color: #fff;
+            padding: 0.5rem;
             text-align: center;
-            padding: 1em 0;
+            font-size: 1rem;
+        }
+
+        /* Map Section */
+        .map-container-wrapper {
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            margin: 2rem 0;
+        }
+        .map-container-wrapper h2 {
+            text-align: center;
+            font-size: 2rem;
+            color: #0288d1;
+            margin-bottom: 1.5rem;
+        }
+        .map-container {
+            width: 100%;
+            height: 400px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        footer {
+            background: #0288d1;
+            color: #fff;
+            padding: 2rem 1rem;
+            text-align: center;
         }
         footer p {
-            margin: 0.5em 0;
+            margin: 0.5rem 0;
+            font-size: 0.9rem;
         }
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translate3d(0, 100%, 0);
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                gap: 0.5rem;
             }
-            to {
-                opacity: 1;
-                transform: none;
+            .content-container {
+                flex-direction: column;
+                align-items: center;
             }
-        }
-        .fadeInUp {
-            animation: fadeInUp 1s ease-out;
+            .notice-board {
+                width: 100%;
+                height: 200px;
+            }
+            .notice-board h3 {
+                font-size: 1rem;
+            }
+            .scrolling-content ul {
+                animation: scrollUp 12s linear infinite;
+            }
+            .scrolling-content li {
+                font-size: 0.9rem;
+            }
         }
     </style>
 </head>
 <body>
     <header>
-        <h1>Kindergarten</h1>
+        <div class="emblem">
+            <img src="logo.jpg" alt="Sanjoe Emblem">
+        </div>
+        <h1>KINDERGARTEN</h1>
+        <h2>SANJOE PUBLIC SCHOOL KANIYARAM | CBSE AFFI. NO: 930992</h2>
     </header>
     <nav>
         <a href="index.html">Home</a>
         <a href="about-us.html">About Us</a>
         <a href="index.html#staff">Staff</a>
-	 <a href="general.html">General</a>
+        <a href="general.html">General</a>
         <a href="gallery.html">Gallery</a>
         <a href="https://forms.gle/QhPGrzfeuXSUerYa6">Admission</a>
         <a href="mandatory-disclosure.html">Mandatory Disclosure</a>
         <a href="contact.html">Contact</a>
-	<a href="our-channel.html">Our Channel</a>
-	<!--<a href="multiplication-test.html">Fun Test</a>-->
+        <a href="our-channel.html">Our Channel</a>
     </nav>
-    <div class="content fadeInUp">
-        <h2>Welcome to Sanjoe Public School Kindergarten</h2>
-        <p>Sanjoe Public School Kindergarten is a place where young minds are nurtured with love, care, and education. Our kindergarten program is designed to provide a safe and stimulating environment for children to learn, grow, and develop essential skills. We believe in a holistic approach to education, focusing on the intellectual, emotional, social, and physical development of each child.</p>
-        <p>Our dedicated teachers use innovative teaching methods to make learning fun and engaging. Through a variety of activities such as storytelling, music, art, and play, we aim to foster creativity, curiosity, and a lifelong love for learning in our students.</p>
-        <p>At Sanjoe, we understand the importance of early childhood education and strive to create a supportive and inclusive community where every child feels valued and respected. Join us on a journey of discovery and growth at Sanjoe Public School Kindergarten.</p>
+    <div class="content-container">
+        <div class="content">
+            <h2>Welcome to Sanjoe Public School Kindergarten</h2>
+            <p>Sanjoe Public School Kindergarten is a vibrant and nurturing space where young minds embark on a journey of discovery, creativity, and joy. We provide a safe and stimulating environment designed to inspire lifelong learning and growth.</p>
+            <p>With innovative teaching methods, engaging activities, and a focus on holistic development, we aim to foster curiosity, confidence, and compassion in every child. Join us in shaping a bright and promising future for your little ones!</p>
+        </div>
+        <div class="notice-board">
+            <h3>Notice Board</h3>
+            <div class="scrolling-content">
+                <ul>
+                    <li>Admission Open for 2025!</li>
+                    <li>Parent-Teacher Meeting on February</li>
+                    <li>CBSE Exam - Feb 15.</li>
+                    <li>Happy Holidays from March 30 to May 31, 2025.</li>
+                </ul>
+            </div>
+        </div>
     </div>
     <div class="gallery-container">
         <div class="photo-box">
-            <img src="KG/1.jpg" alt="Kindergarten Photo 1">
-            <p>Graduation Day</p>
+            <img src="KG/1.jpg" alt="Graduation Day">
+            <p>"Celebrating Achievements"</p>
         </div>
         <div class="photo-box">
-            <img src="KG/2.jpg" alt="Kindergarten Photo 2">
-            <p>Opening Day</p>
+            <img src="KG/2.jpg" alt="Opening Day">
+            <p>"New Beginnings, Endless Possibilities"</p>
         </div>
         <div class="photo-box">
-            <img src="KG/3.jpg" alt="Kindergarten Photo 3">
-            <p>Christmas Celebration</p>
+            <img src="KG/3.jpg" alt="Christmas Celebration">
+            <p>"The Magic of Togetherness"</p>
         </div>
         <div class="photo-box">
-            <img src="KG/4.jpg" alt="Kindergarten Photo 4">
-            <p>Learning with Friends</p>
+            <img src="KG/4.jpg" alt="Learning with Friends">
+            <p>"Friendship and Fun"</p>
         </div>
-        <!-- Add more photo boxes as needed -->
     </div>
+    
+    <!-- Map Section -->
+    <div class="map-container-wrapper">
+        <h2>LOCATION</h2>
+        <div class="map-container">
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15634.171935133476!2d75.9949753!3d11.8067304!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTEuODA2NzMwMzg5NDMxOTUsIDc1Ljk5NDk3NTMxMjczNTkz!5e0!3m2!1sen!2sin!4v1592467654952!5m2!1sen!2sin" 
+                width="100%" 
+                height="100%" 
+                frameborder="0" 
+                style="border:0;" 
+                allowfullscreen="" 
+                aria-hidden="false" 
+                tabindex="0">
+            </iframe>
+        </div>
+    </div>
+    
     <footer>
         <p>&copy; 2024 Sanjoe Public School Kaniyaram. All rights reserved.</p>
         <p>Contact Us: 9961452061 | sanjoeblessedschool@gmail.com</p>
@@ -148,4 +333,3 @@
     </footer>
 </body>
 </html>
-
