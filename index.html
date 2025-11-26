@@ -641,7 +641,7 @@ video {
 
  <!-- Popup Window -->
     <div class="popup" id="admission-popup">
-        <h2>ADMISSION STARTED 2025-2026</h2>
+        <h2>ADMISSION STARTED 2026-2027</h2>
         <p>Enroll now to secure your child's future at </p><p>Sanjoe Public School</p>
         <div class="popup-buttons">
             <button class="btn close-btn" onclick="closePopup()">Close</button>
@@ -655,8 +655,8 @@ video {
 // Show the popup on page load
         document.addEventListener("DOMContentLoaded", function () {
             const currentDate = new Date();
-            const startDate = new Date("2025-01-01");
-            const endDate = new Date("2025-03-31");
+            const startDate = new Date("2025-11-25");
+            const endDate = new Date("2026-06-01");
 
             if (currentDate >= startDate && currentDate <= endDate) {
                 document.getElementById("admission-popup").style.display = "block";
