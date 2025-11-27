@@ -3,643 +3,1503 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="shortcut icon" href="favicon.ico">
+    <link rel="shortcut icon" href="favicon.ico">
     <title>Sanjoe Public School</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f0f8ff;
-            color: #000;
-            text-align: center;
+        /* Define CSS Variables for a consistent and colorful design */
+        :root {
+            --primary-color: #004080; /* Deeper Blue - Professional, Trustworthy */
+            --secondary-color: #28a745; /* Vibrant Green - Growth, Vitality */
+            --accent-color: #FF6F61; /* Coral/Orange for highlights - Energy, Focus */
+            --light-bg: #f8faff; /* Very light blue background - Clean, Open */
+            --dark-text: #333;
+            --light-text: #ffffff;
+            --border-color: #e0e0e0; /* Softer border */
+            --shadow-light: 0 4px 15px rgba(0, 0, 0, 0.08);
+            --shadow-medium: 0 6px 20px rgba(0, 0, 0, 0.12);
+            --shadow-dark: 0 8px 25px rgba(0, 0, 0, 0.20);
+            --gradient-primary: linear-gradient(90deg, #003366 0%, #004d99 100%); /* Deeper Blue Gradient */
+            --gradient-secondary: linear-gradient(90deg, #218838 0%, #2dc04a 100%); /* Stronger Green Gradient */
+            --gradient-welcome: linear-gradient(135deg, #ffffff 0%, #edf4ff 100%); /* White to very light blue */
+            --gradient-video: linear-gradient(135deg, #e0e6f2 0%, #d5dde9 100%); /* Subtle grey-blue */
+            --gradient-section-bg-1: linear-gradient(135deg, #f0f7ff 0%, #e8f0ff 100%); /* Lightest blue for sections */
+            --gradient-section-bg-2: linear-gradient(135deg, #fdfdfe 0%, #f7f9fb 100%); /* Almost white, very subtle grey */
+            --gradient-notification: linear-gradient(135deg, #cceeff 0%, #aaddff 100%); /* Light blue to brighter blue */
+            --gradient-cta: linear-gradient(90deg, #007bff 0%, #0056b3 100%); /* Standard Blue for CTA */
+
+            /* Variables for Live Moving Background - ENHANCED */
+            --moving-bg-color-1: #e0f0ff; /* Very light blue */
+            --moving-bg-color-2: #f0f8ff; /* Off-white/very light blue */
+            --moving-bg-color-3: #ffffff;
         }
 
- /* Add popup styles */
+        /* LIVE MOVING BACKGROUND IMPLEMENTATION - ENHANCED */
+        @keyframes subtleMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        /* NEW: Multi-directional move for a liquid effect */
+        @keyframes complexMove {
+            0% { background-position: 0% 50%; }
+            25% { background-position: 50% 100%; }
+            50% { background-position: 100% 50%; }
+            75% { background-position: 50% 0%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            /* Applying the animated background to the body */
+            background-color: var(--light-bg);
+            /* ENHANCED GRADIENT */
+            background-image: linear-gradient(
+                135deg, 
+                var(--moving-bg-color-1) 0%, 
+                var(--moving-bg-color-2) 33%, 
+                var(--moving-bg-color-3) 66%, 
+                var(--moving-bg-color-1) 100%
+            );
+            background-size: 600% 600%; /* Larger than viewport for subtler movement */
+            animation: complexMove 50s ease infinite; /* Slower, more complex movement */
+            color: var(--dark-text);
+            text-align: center;
+            line-height: 1.7;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased; /* Smoother fonts */
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* General Section Styling */
+        section {
+            padding: 4em 2em; /* Increased padding for more breathing room */
+            margin-top: 0; /* Sections butt up against each other */
+            box-shadow: inset 0 1px 5px rgba(0, 0, 0, 0.03); /* Subtle internal shadow */
+            background-color: var(--light-bg); /* Ensure sections override the body background for clarity */
+        }
+
+        section:nth-of-type(even) {
+            background: var(--gradient-section-bg-1);
+        }
+
+        section:nth-of-type(odd) {
+            background: var(--gradient-section-bg-2);
+        }
+
+        h2 {
+            font-size: 2.8em;
+            color: var(--primary-color);
+            margin-bottom: 0.8em;
+            font-weight: 700;
+            position: relative;
+            padding-bottom: 0.3em;
+            display: inline-block; /* For underline centering */
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px; /* Shorter, modern underline */
+            height: 4px;
+            background-color: var(--accent-color);
+            border-radius: 2px;
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Preloader */
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.98);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.6s ease-out;
+        }
+
+        .loader {
+            border: 8px solid #f3f3f3;
+            border-top: 8px solid var(--primary-color);
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            animation: spin 1s linear infinite;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Popup styles - Simplified and more integrated look */
         .popup {
             position: fixed;
             top: 50%;
             left: 50%;
-            transform: translate(-50%, -50%);
-            width: 80%;
+            transform: translate(-50%, -50%) scale(0.9);
+            width: 90%;
             max-width: 400px;
-            background-color: #FAF0DD;
-            border: 2px solid #003366;
+            background-color: #ffffff;
+            border: 1px solid var(--border-color);
             border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-            padding: 20px;
+            box-shadow: var(--shadow-medium);
+            padding: 30px;
             z-index: 1000;
             display: none;
-            animation: popupEffect 0.5s ease-in-out;
+            animation: popupEffect 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards; /* Smoother bounce */
+            opacity: 0;
+            text-align: center;
+        }
+
+        .popup.show {
+            display: block;
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
         }
 
         .popup h2 {
-            margin: 0;
-            font-size: 1.5em;
-            color: #003366;
+            margin: 0 0 15px 0;
+            font-size: 2em;
+            color: var(--primary-color);
+            font-weight: 700;
+            padding-bottom: 0.5em;
+            border-bottom: 2px solid var(--secondary-color);
+            display: inline-block;
+        }
+
+        .popup h2::after {
+            content: none; /* Remove underline from h2 in popup */
         }
 
         .popup p {
             margin: 1em 0;
-            font-size: 1em;
+            font-size: 1.1em;
             color: #555;
+            line-height: 1.5;
         }
 
         .popup .popup-buttons {
             display: flex;
             justify-content: center;
-            gap: 10px;
-            margin-top: 10px;
+            gap: 15px;
+            margin-top: 25px;
         }
 
         .popup .btn {
-            display: inline-block;
-            padding: 10px 20px;
+            padding: 12px 25px;
             text-decoration: none;
-            border-radius: 5px;
-            color: #ffffff;
+            border-radius: 6px;
+            color: var(--light-text);
             cursor: pointer;
-            text-align: center;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
         }
 
         .popup .close-btn {
-            background-color: #003366;
+            background-color: #6c757d;
+            border: 1px solid #6c757d;
         }
 
         .popup .close-btn:hover {
-            background-color: #555;
+            background-color: #5a6268;
+            border-color: #5a6268;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 12px rgba(0, 0, 0, 0.2);
         }
 
         .popup .enroll-btn {
-            background-color: #28a745;
+            background-color: var(--secondary-color);
+            border: 1px solid var(--secondary-color);
         }
 
         .popup .enroll-btn:hover {
             background-color: #218838;
+            border-color: #218838;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 12px rgba(0, 0, 0, 0.2);
         }
 
         @keyframes popupEffect {
-            from {
-                opacity: 0;
-                transform: translate(-50%, -60%);
-            }
-            to {
-                opacity: 1;
-                transform: translate(-50%, -50%);
-            }
+            from { opacity: 0; transform: translate(-50%, -70%) scale(0.9); }
+            to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
         }
 
+        /* Top Header Contact Info */
         .header-top {
             display: flex;
             justify-content: space-between;
-            padding: 0.5em;
-            background-color: #E8E1DF;
-            color: #021839;
+            align-items: center;
+            padding: 0.7em 3em; /* More padding */
+            background-color: #eaf2f8; /* Lighter, more professional background */
+            color: #003366;
+            font-size: 0.85em;
+            flex-wrap: wrap;
+            gap: 10px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
         }
+
+        .contact-info small {
+            font-weight: 500;
+            color: #444;
+        }
+
         .date-time {
-            font-size: 0.8em;
-            font-weight: bold;
-	    color: #6495ED;
+            font-size: 0.9em;
+            font-weight: 600;
+            color: var(--primary-color);
         }
+
+        /* Main Header with Logo and School Name */
         header {
-            background-color: #003366;
-            color: #ffffff;
-            padding: 1em 0;
+            background: var(--gradient-primary);
+            color: var(--light-text);
+            padding: 2em 0;
+            box-shadow: var(--shadow-medium);
+            position: relative;
+            z-index: 10;
+            overflow: hidden;
         }
+
+        header img {
+            width: 85px;
+            height: 85px;
+            object-fit: contain;
+            animation: bounceIn 1s ease-out;
+            margin-bottom: 10px;
+            border-radius: 50%;
+            border: 3px solid rgba(255, 255, 255, 0.7);
+        }
+
         header h1 {
-            animation: fadeIn 1.5s ease-out;
+            margin: 0.4em 0 0.2em 0;
+            font-size: 3.2em; /* Slightly larger */
+            animation: fadeIn 1.2s ease-out;
+            letter-spacing: 1.2px;
+            text-shadow: 1px 2px 4px rgba(0, 0, 0, 0.3);
+            font-weight: 800;
         }
+
+        header p {
+            margin: 0;
+            font-size: 1.15em;
+            animation: slideInUp 1.2s ease-out;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 300;
+        }
+
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
         }
+
+        @keyframes bounceIn {
+            0%, 20%, 40%, 60%, 80%, 100% {
+                transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+            }
+            0% { opacity: 0; transform: scale3d(0.3, 0.3, 0.3); }
+            20% { transform: scale3d(1.05, 1.05, 1.05); }
+            40% { transform: scale3d(0.95, 0.95, 0.95); }
+            60% { opacity: 1; transform: scale3d(1.02, 1.02, 1.02); }
+            80% { transform: scale3d(0.98, 0.98, 0.98); }
+            100% { opacity: 1; transform: scale3d(1, 1, 1); }
+        }
+
+        @keyframes slideInUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        /* Navigation Bar (Desktop) - UPDATED ANIMATION */
         nav {
             display: flex;
             justify-content: center;
-            background-color: #008000;
-            position: relative;
+            background: var(--gradient-secondary);
+            position: sticky;
+            top: 0;
+            z-index: 99;
+            box-shadow: 0 2px 7px rgba(0, 0, 0, 0.2);
+            flex-wrap: wrap;
+            padding: 0.4em 0;
         }
+
         nav a {
-            color: #ffffff;
-            padding: 1em;
+            color: var(--light-text);
+            padding: 1em 1.5em;
             text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            font-size: 1em;
+            letter-spacing: 0.3px;
+            text-transform: uppercase;
         }
+
+        /* NEW UNDERLINE ANIMATION */
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%) scaleX(0); /* Start hidden and centered */
+            width: 100%;
+            height: 3px;
+            background-color: var(--accent-color);
+            transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Smoother transition */
+        }
+
+        nav a:hover::after {
+            transform: translateX(-50%) scaleX(1); /* Expand to full width */
+        }
+
         nav a:hover {
-            background-color: #cbd394;
+            color: #fff;
+            background-color: transparent; /* Remove the background-color hover */
+            transform: none; /* Remove translateY for cleaner effect */
+            box-shadow: none; /* Remove box-shadow on hover */
         }
-        section {
-            padding: 2em;
+
+        /* Hamburger Menu Icon */
+        .menu-toggle {
+            display: none;
+            cursor: pointer;
+            padding: 10px 15px;
+            color: var(--light-text);
+            font-size: 1.5em;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        .menu-toggle:hover {
+            color: var(--accent-color);
+        }
+
+        /* Hero Section - Slider & Events */
+        .hero-section {
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 2em;
+            padding: 3.5em 2em;
+            flex-wrap: wrap; /* Allow wrapping for mobile */
+            background: var(--gradient-section-bg-2);
         }
+
         .slider {
             position: relative;
             width: 100%;
-            max-width: 1400px;
+            max-width: 850px;
             height: 480px;
             overflow: hidden;
+            border-radius: 15px;
+            box-shadow: var(--shadow-dark);
+            background-color: #fff;
+            border: 1px solid var(--border-color);
+            flex-shrink: 0; /* Prevents shrinking */
+            flex-grow: 1; /* Allows it to take available space */
         }
+
         .slides {
             display: flex;
-            transition: opacity 1s ease-in-out;
             position: relative;
             width: 100%;
-            height: 480px;
+            height: 100%;
         }
+
         .slides img {
             width: 100%;
-            height: 480px;
+            height: 100%;
             position: absolute;
             left: 0;
             top: 0;
             opacity: 0;
             transition: opacity 1s ease-in-out;
+            object-fit: cover;
+            border-radius: 15px;
         }
+
         .slides img.active {
             opacity: 1;
         }
+
+        /* Events Section (Notification Bar) */
+        .events {
+            width: 320px; /* Adjusted width */
+            min-width: 280px;
+            background: var(--gradient-notification);
+            border: 1px solid var(--primary-color); /* Primary border */
+            border-radius: 15px;
+            height: 480px; /* Match slider height on desktop */
+            overflow: hidden;
+            padding: 1.5em 1.8em;
+            box-shadow: var(--shadow-medium);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            flex-shrink: 0;
+            animation: slideInLeft 0.8s ease-out;
+        }
+
+        @keyframes slideInLeft {
+            from { transform: translateX(-30px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        .events h2 {
+            color: var(--primary-color);
+            margin-bottom: 1em;
+            font-size: 2em;
+            font-weight: 700;
+            padding-bottom: 0.5em;
+            position: static; /* Remove position relative for h2 */
+        }
+        .events h2::after {
+            background-color: var(--secondary-color); /* Different underline color */
+            width: 50px;
+        }
+
+        /* NEW: Container for the scrolling list content */
+        .event-list-container {
+            flex-grow: 1;
+            overflow: hidden; /* Crucial: Hides content that scrolls out */
+            position: relative; /* Establish context for list content */
+            max-height: 350px; /* Base max height for desktop/larger views */
+        }
+
+        .events ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            position: absolute; /* Allows for easy scrolling animation */
+            width: 100%;
+            animation: scrollUp 20s linear infinite; /* Animation applied here */
+            top: 0; /* Start at the top of the container */
+        }
+
+        /* FIX: Keyframes for infinite loop - the actual scroll distance is handled by JS duplication */
+        @keyframes scrollUp {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-50%); } /* Half the duplicated content */
+        }
+
+        /* PAUSE ANIMATION ON HOVER */
+        .events:hover ul {
+            animation-play-state: paused;
+        }
+
+
+        .events li {
+            margin: 1em 0;
+            padding-bottom: 0.6em;
+            border-bottom: 1px dashed rgba(0, 0, 0, 0.1);
+            font-size: 1em;
+            color: #555;
+            transition: color 0.3s ease, transform 0.3s ease;
+            text-align: left;
+        }
+
+        .events li:last-child {
+            border-bottom: none;
+        }
+
+        .events li a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .events li a:hover {
+            color: var(--secondary-color);
+            text-decoration: underline;
+            transform: translateX(3px);
+        }
+
+        /* Welcome Section */
+        .welcome-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 3.5em 2.5em;
+            background: var(--gradient-welcome);
+            border: 1px solid var(--border-color);
+            margin: 0; /* Remove margin, sections flow */
+            border-radius: 0; /* No border radius, use section padding */
+            box-shadow: none; /* No shadow, controlled by section */
+            position: relative;
+            animation: zoomIn 0.8s ease-out;
+            text-align: justify;
+            overflow: hidden;
+        }
+
+        .welcome-section h2 {
+            margin-bottom: 1em;
+        }
+
+        .welcome-section p {
+            font-size: 1.05em;
+            line-height: 1.8;
+            color: #444;
+            font-weight: 400;
+            max-height: 140px; /* Shorter initial height for professional look */
+            overflow: hidden;
+            transition: max-height 0.5s ease-out;
+            text-overflow: ellipsis;
+            padding: 0 1.5em;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .welcome-section p.expanded {
+            max-height: 1000px;
+        }
+
+        .read-more-btn {
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            border: none;
+            padding: 10px 22px;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-top: 1.2em;
+            font-weight: 600;
+            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+        }
+
+        .read-more-btn:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .welcome-circle {
+            position: relative;
+            width: 200px; /* Slightly smaller circle */
+            height: 200px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.4em;
+            font-weight: bold;
+            text-align: center;
+            box-shadow: var(--shadow-medium);
+            transform-style: preserve-3d;
+            perspective: 1000px;
+            animation: flip 6s infinite; /* Faster flip */
+            cursor: pointer;
+            margin-bottom: 2em;
+            border: 4px solid var(--accent-color);
+        }
+
+        .welcome-circle .front,
+        .welcome-circle .back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            transition: transform 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        .welcome-circle .front {
+            background-color: var(--primary-color);
+            color: var(--light-text);
+        }
+
+        .welcome-circle .back {
+            background-color: var(--light-text);
+            color: var(--primary-color);
+            transform: rotateY(180deg);
+            background-image: url('logo.jpg');
+            background-size: 70%;
+            background-repeat: no-repeat;
+            background-position: center;
+            border: 2px solid var(--primary-color);
+        }
+
+        @keyframes flip {
+            0% { transform: rotateY(0); }
+            50% { transform: rotateY(180deg); }
+            100% { transform: rotateY(360deg); }
+        }
+
+        @keyframes zoomIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        /* Video Section */
+        #video-section {
+            background: var(--gradient-video);
+            margin-top: 0;
+            box-shadow: inset 0 3px 10px rgba(0, 0, 0, 0.08);
+        }
+
+        #video-section h2 {
+            margin-bottom: 1.5em;
+        }
+
+        .video-container {
+            width: 90%;
+            max-width: 900px;
+            margin: 0 auto;
+            box-shadow: var(--shadow-medium);
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+            background-color: #000;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        video {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 15px;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .video-container:hover video {
+            transform: scale(1.02);
+        }
+
+        /* About Us Snippet Section */
+        #about-us-snippet {
+            padding: 4em 2em;
+            background: var(--gradient-section-bg-2);
+            text-align: center;
+        }
+
+        #about-us-snippet h2 {
+            margin-bottom: 1em;
+        }
+
+        #about-us-snippet .content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 2.5em;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        #about-us-snippet img {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: var(--shadow-light);
+            border: 1px solid var(--border-color);
+            transition: transform 0.3s ease;
+        }
+
+        #about-us-snippet img:hover {
+            transform: scale(1.02);
+        }
+
+        #about-us-snippet .text-content {
+            flex: 1;
+            min-width: 300px;
+            max-width: 600px;
+            text-align: left;
+            line-height: 1.7;
+            color: #555;
+            font-size: 1.05em;
+        }
+
+        #about-us-snippet .text-content p {
+            margin-bottom: 1em;
+            text-align: justify;
+        }
+
+        #about-us-snippet .btn {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: var(--light-text);
+            padding: 12px 28px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 1.5em;
+            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        #about-us-snippet .btn:hover {
+            background-color: #218838;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Visionary and Staff Wrapper */
+        .visionary-staff-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: stretch; /* Stretch items to match height */
+            gap: 2.5em;
+            padding: 4em 2em;
+            background: var(--gradient-section-bg-1);
+            margin-top: 0;
+            box-shadow: none;
+        }
+
+        .visionary-box {
+            flex: 1;
+            min-width: 300px;
+            max-width: 550px; /* Reduced max-width for balance */
+            padding: 2.5em;
+            background-color: #ffffff;
+            border-radius: 15px;
+            box-shadow: var(--shadow-medium);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between; /* Push image up, text down */
+        }
+
+        .visionary-box:hover {
+            transform: translateY(-5px) scale(1.01);
+            box-shadow: var(--shadow-dark);
+        }
+
+        .visionary-box h2 {
+            margin-top: 0;
+            margin-bottom: 1em;
+            font-size: 2.2em;
+        }
+        .visionary-box h2::after {
+            background-color: var(--primary-color);
+        }
+
+        .visionary-box img {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            object-fit: cover;
+            display: block;
+            border: 2px solid var(--accent-color);
+            margin-bottom: 1.5em; /* Space between image and text */
+        }
+
+        /* Staff Section */
+        #staff {
+            flex: 1;
+            min-width: 300px;
+            max-width: 650px; /* Slightly larger for more staff members */
+            background-color: #fefefe;
+            padding: 2.5em;
+            border-radius: 15px;
+            box-shadow: var(--shadow-medium);
+            border: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+        }
+
+        #staff h2 {
+            margin-bottom: 1.5em;
+            font-size: 2.2em;
+        }
+        #staff h2::after {
+            background-color: var(--secondary-color);
+        }
+
+        .staff-scrollable-content {
+            flex-grow: 1;
+            overflow-y: scroll;
+            max-height: 550px; /* Adjusted max height, will be dynamic */
+            padding-right: 15px;
+            box-sizing: border-box;
+        }
+
+        /* Custom scrollbar */
+        .staff-scrollable-content::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .staff-scrollable-content::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 8px;
+        }
+
+        .staff-scrollable-content::-webkit-scrollbar-thumb {
+            background: var(--primary-color);
+            border-radius: 8px;
+        }
+
+        .staff-scrollable-content::-webkit-scrollbar-thumb:hover {
+            background: var(--secondary-color);
+        }
+
+        .staff-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.8em; /* Slightly smaller gap */
+            padding-bottom: 0.5em;
+        }
+
+        .staff-member {
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+            background-color: #fff;
+            padding: 1.5em;
+            border-radius: 10px;
+            box-shadow: var(--shadow-light);
+            width: 160px; /* Consistent width */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .staff-member:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: var(--shadow-medium);
+            background-color: #f5faff; /* Light blue background on hover */
+        }
+
+        .staff-member img {
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border: 3px solid var(--primary-color);
+            transition: border-color 0.3s ease, transform 0.3s ease;
+            margin-bottom: 12px;
+        }
+
+        .staff-member:hover img {
+            border-color: var(--secondary-color);
+            transform: scale(1.05);
+        }
+
+        .staff-member p {
+            margin: 0;
+            font-size: 0.95em;
+            font-weight: 500;
+            color: #333;
+        }
+
+        /* Programs/Academics Snippet Section */
+        #programs-snippet {
+            padding: 4em 2em;
+            background: var(--gradient-section-bg-2);
+            text-align: center;
+        }
+
+        #programs-snippet h2 {
+            margin-bottom: 1.5em;
+        }
+
+        .program-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5em;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .program-card {
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: var(--shadow-light);
+            padding: 2.5em;
+            text-align: left;
+            border: 1px solid var(--border-color);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .program-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .program-card h3 {
+            color: var(--primary-color);
+            font-size: 1.6em;
+            margin-top: 0;
+            margin-bottom: 0.8em;
+            font-weight: 600;
+        }
+
+        .program-card p {
+            color: #555;
+            font-size: 0.95em;
+            line-height: 1.6;
+            flex-grow: 1;
+        }
+
+        .program-card .btn {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: var(--light-text);
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 500;
+            margin-top: 1.2em;
+            transition: background-color 0.3s ease;
+        }
+
+        .program-card .btn:hover {
+            background-color: #e06054;
+        }
+
+        /* Gallery Section - NEW IMPLEMENTATION */
+        #gallery {
+            background: var(--gradient-section-bg-1);
+            margin-top: 0;
+        }
+
+        #gallery h2 {
+            margin-bottom: 1.5em;
+        }
+
         .gallery-container {
             display: flex;
             justify-content: center;
             overflow: hidden;
             width: 100%;
-            max-width: 800px;
+            max-width: 1200px;
             margin: 0 auto;
+            border: 1px solid var(--border-color);
+            border-radius: 15px;
+            box-shadow: var(--shadow-medium);
+            background-color: #fff;
+            padding: 1.5em; /* Increased padding for the grid */
             position: relative;
-            border: 1px solid #ccc; /* Added border for gallery container */
         }
-        .gallery {
-            display: flex;
+
+        /* NEW CSS GRID FOR GALLERY */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-auto-rows: minmax(200px, auto); /* Flexible row height */
+            gap: 15px; /* Gap between images */
             width: 100%;
-            height: 200px;
-            animation: scrollRightToLeft 10s linear infinite;
         }
-        @keyframes scrollRightToLeft {
-            0% { transform: translateX(100%); }
-            100% { transform: translateX(-100%); }
-        }
-        .gallery img {
-            width: 200px;
-            height: 200px;
-            margin: 1em;
-            transition: transform 0.3s;
+
+        .gallery-grid img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.4s ease-out;
             cursor: pointer;
-            object-fit: cover;
-            border: 2px solid #ccc;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border: 2px solid transparent;
+            opacity: 0; /* Hidden for animation */
+            transform: translateY(20px); /* Move down for slide-up effect */
         }
-        .gallery img:hover {
-            transform: scale(1.1);
+
+        .gallery-grid img:hover {
+            transform: scale(1.03) translateY(-3px);
+            box-shadow: var(--shadow-dark);
+            border-color: var(--accent-color);
         }
-        .staff-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
+
+        /* Animation class to be added by JS for staggered effect */
+        .gallery-grid img.reveal {
+            opacity: 1;
+            transform: translateY(0);
         }
-        .staff-member {
-            margin: 1em;
-            text-align: center;
-            transition: transform 0.3s, box-shadow 0.3s;
+
+        /* Optional: Make some images span multiple columns/rows */
+        .gallery-grid img:nth-child(3n) {
+            /* Try to span 2 columns on desktop if space allows */
+            /* grid-column: span 2; */
         }
-        .staff-member:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+        .gallery-grid img:nth-child(5n) {
+            /* grid-row: span 2; */
         }
-        .staff-member img {
-            border-radius: 50%;
-            width: 150px;
-            height: 150px;
-            object-fit: cover;
+
+
+        /* Call to Action for Admission */
+        #admission-cta {
+            background: var(--gradient-cta);
+            color: var(--light-text);
+            padding: 3.5em 2em;
+            margin-top: 0;
+            box-shadow: inset 0 3px 10px rgba(0, 0, 0, 0.15);
         }
-#video-section {
-    padding: 2em;
-    background-color: #CCCCFF;
-    text-align: center;
-}
 
-.video-container {
-    width: 80%;
-    max-width: 1400px;
-    margin: 0 auto;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-    border-radius: 10px;
-    overflow: hidden;
-}
-
-video {
-    width: 100%;
-    height: auto;
-    display: block;
-    border-radius: 10px;
-}
-
-.visionary-container {
-    display: flex;
-    justify-content: center;
-    margin: 2em 0;
-}
-
-.visionary-box {
-    width: 600px;
-    padding: 1em;
-    background-color: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-    overflow: hidden;
-    text-align: center;
-}
-
-.visionary-box img {
-    width: 100%;
-    height: auto;
-    border-radius: 10px;
-    object-fit: cover;
-}
-        .events {
-            width: 50%;
-            background-color: #ffcccc;
-            border: 1px solid #ccc;
-            height: 446px;
-            overflow: hidden;
-            padding: 1em;
+        #admission-cta h2 {
+            color: var(--light-text);
+            font-size: 2.5em;
+            margin-bottom: 0.8em;
         }
-        .events ul {
-            animation: scrollUp 15s linear infinite;
-            list-style-type: none;
-            padding: 0;
-            margin: 0;
+
+        #admission-cta h2::after {
+            background-color: rgba(255, 255, 255, 0.6);
         }
-        .events li {
-            margin: 1em 0;
+
+        #admission-cta p {
+            font-size: 1.2em;
+            margin-bottom: 2em;
+            max-width: 700px;
+            margin: 0.5em auto 2em auto;
+            color: rgba(255, 255, 255, 0.9);
         }
-        @keyframes scrollUp {
-            0% { transform: translateY(450%); }
-            100% { transform: translateY(-20%); }
+
+        #admission-cta .btn {
+            background-color: var(--accent-color);
+            color: var(--light-text);
+            padding: 15px 35px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1em;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
- @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
 
-.welcome-section {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    height: auto;
-    padding: 2em;
-    background-color: #ffffff;
-    border: 2px solid #003366;
-    margin: 2em;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    position: relative;
-    animation: zoomIn 1s ease-out;
-    font-family: 'Poppins', sans-serif; /* Apply the attractive font */
-    text-align: justify; /* Justify the text */
-}
-
-.welcome-section p {
-    font-size: 1.1em; /* Adjust the size for readability */
-    line-height: 1.8; /* Add space between lines */
-    letter-spacing: 0.5px; /* Slight letter-spacing for clarity */
-    color: #333; /* Dark text color for contrast */
-    font-weight: 400; /* Regular weight */
-}
-
-.welcome-circle {
-    position: relative;
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    background-color: #003366;
-    color: #ffffff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1.2em;
-    font-weight: bold;
-    text-align: center;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-    transform-style: preserve-3d;
-    perspective: 1000px;
-    animation: flip 6s infinite;
-    cursor: pointer;
-}
-
-.welcome-circle .front,
-.welcome-circle .back {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    backface-visibility: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50%;
-}
-
-.welcome-circle .front {
-    background-color: #003366;
-    color: #ffffff;
-}
-
-.welcome-circle .back {
-    background-color: #ffffff;
-    color: #003366;
-    transform: rotateY(180deg);
-    background-image: url('logo.jpg'); /* Replace 'logo.jpg' with your school emblem file path */
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-}
-
-@keyframes flip {
-    0% { transform: rotateY(0); }
-    50% { transform: rotateY(180deg); }
-    100% { transform: rotateY(360deg); }
-}
-
-        @keyframes zoomIn {
-            from { transform: scale(0.5); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
+        #admission-cta .btn:hover {
+            background-color: #E75F51;
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
         }
-        .welcome-section h2 {
-            color: #FFFFFF;
-            margin-bottom: 1em;
+
+        /* Contact Info Snippet */
+        #contact-snippet {
+            background: var(--gradient-section-bg-2);
+            padding: 3em 2em;
+            margin-top: 0;
+            color: #555;
+            line-height: 1.6;
         }
-        footer {
-            background-color: #003366;
-            color: #ffffff;
-            text-align: center;
-            padding: 1em 0;
-        }
-        footer p {
+        #contact-snippet p {
             margin: 0.5em 0;
+            font-size: 1.05em;
         }
-        @media (max-width: 600px) {
-            nav {
-                flex-direction: column;
-            }
-            .gallery img, .staff-member img {
-                width: 100%;
-                max-width: 100%;
-            }
-            .slider {
-                width: 100%;
-                height: auto;
-            }
-            .slides {
-                width: 100%;
-                height: auto;
-            }
-            .slides img {
-                width: 100%;
-                height: auto;
-            }
-            section {
-                flex-direction: column;
-            }
-            .events {
-                width: 100%;
-                height: auto;
-            }
+
+        /* Footer */
+        footer {
+            background: var(--gradient-primary);
+            color: var(--light-text);
+            text-align: center;
+            padding: 2em 0;
+            margin-top: 0;
+            box-shadow: 0 -3px 10px rgba(0, 0, 0, 0.2);
         }
+
+        footer p {
+            margin: 0.8em 0;
+            font-size: 0.95em;
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        /* Modal for gallery images */
         .modal {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
+            background-color: rgba(0, 0, 0, 0.95);
             display: flex;
             justify-content: center;
             align-items: center;
             z-index: 1000;
+            animation: fadeIn 0.3s ease-out;
         }
+
         .modal img {
-            max-width: 90%;
-            max-height: 90%;
+            max-width: 85%;
+            max-height: 85%;
+            border: 5px solid var(--light-text);
+            border-radius: 10px;
+            box-shadow: var(--shadow-dark);
+            animation: zoomIn 0.3s ease-out;
         }
+
         .modal .close {
             position: absolute;
-            top: 10px;
-            right: 10px;
-            font-size: 2em;
+            top: 20px;
+            right: 30px;
+            font-size: 3em;
             color: #fff;
             cursor: pointer;
+            transition: transform 0.3s ease, color 0.3s ease;
         }
+
+        .modal .close:hover {
+            transform: rotate(90deg) scale(1.05);
+            color: var(--accent-color);
+        }
+
+        /* Scroll to Top Button */
         .scroll-to-top {
             position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background-color: #003366;
-            color: #ffffff;
+            bottom: 30px;
+            right: 30px;
+            background-color: var(--accent-color);
+            color: var(--light-text);
             border: none;
             border-radius: 50%;
-            width: 50px;
-            height: 50px;
+            width: 55px;
+            height: 55px;
             text-align: center;
             cursor: pointer;
             display: none;
             justify-content: center;
             align-items: center;
-            font-size: 24px;
+            font-size: 28px;
+            box-shadow: var(--shadow-medium);
+            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+            z-index: 900;
+            font-weight: 700;
         }
+
         .scroll-to-top:hover {
-            background-color: #555;
+            background-color: #e06054;
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: var(--shadow-dark);
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 1200px) {
+            .hero-section {
+                flex-direction: column;
+                align-items: center;
+                gap: 2.5em;
+            }
+            .events {
+                width: 90%;
+                max-width: 550px;
+                height: 400px; /* **FIX**: Enforce a fixed height on tablet/stacked view */
+                padding: 2em;
+            }
+            /* **FIX**: Ensure event container maintains its height constraint for scrolling animation */
+            .event-list-container {
+                max-height: 250px; /* Max height when stacked */
+            }
+            .slider {
+                width: 90%;
+                height: 420px;
+                max-width: 700px;
+            }
+            .slides img {
+                height: 420px;
+            }
+            /* Gallery adjustments for tablet */
+            .gallery-container {
+                padding: 1em;
+            }
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+        }
+
+        @media (max-width: 1024px) {
+            h2 {
+                font-size: 2.4em;
+            }
+            nav {
+                padding: 0.4em 1em;
+                justify-content: space-between;
+                align-items: center;
+            }
+            .menu-toggle {
+                display: block; /* Show hamburger icon */
+            }
+            nav a {
+                display: none; /* Hide links by default */
+                width: 100%;
+                padding: 0.9em 1.2em;
+                font-size: 0.95em;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            }
+            /* Show links when 'open' class is applied */
+            nav.open a {
+                display: block;
+            }
+            /* NEW: Ensure the after pseudo-element is only for desktop/inline links */
+            nav.open a::after {
+                content: none;
+            }
+
+            nav a:last-child {
+                border-bottom: none;
+            }
+            nav .nav-links {
+                display: none;
+                width: 100%;
+                flex-direction: column;
+                background: var(--gradient-secondary); /* Ensure background covers dropped-down menu */
+            }
+            nav.open .nav-links {
+                display: flex;
+            }
+
+            .slider {
+                height: 380px;
+            }
+            .slides img {
+                height: 380px;
+            }
+            .events {
+                height: 400px; /* Fixed height for events even when stacked on tablet */
+            }
+            .event-list-container {
+                max-height: 280px;
+            }
+            .welcome-section p {
+                max-height: 180px;
+            }
+            .welcome-circle {
+                width: 180px;
+                height: 180px;
+                font-size: 1.2em;
+            }
+            #about-us-snippet .content {
+                flex-direction: column;
+            }
+            #about-us-snippet img {
+                max-width: 90%;
+                margin-bottom: 1.5em;
+            }
+            .program-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            }
+            .visionary-staff-wrapper {
+                flex-direction: column;
+                align-items: center;
+            }
+            .visionary-box, #staff {
+                width: 90%;
+                max-width: 600px;
+                height: auto;
+            }
+            .staff-scrollable-content {
+                max-height: 450px; /* Adjust for stacked layout */
+            }
+            /* Gallery adjustments for tablet */
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            }
+            #admission-cta h2 {
+                font-size: 2.2em;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-top {
+                flex-direction: column;
+                text-align: center;
+                padding: 0.5em 1em;
+            }
+            header h1 {
+                font-size: 2.2em;
+            }
+            header p {
+                font-size: 1em;
+            }
+            /* Mobile Nav: Hide all links except the toggle button and wrap them in .nav-links */
+            nav {
+                justify-content: space-between;
+                padding: 0;
+            }
+            .menu-toggle {
+                display: block;
+                order: 1;
+                margin-right: 1em;
+            }
+            nav .nav-links {
+                display: none;
+                order: 2;
+            }
+            nav.open .nav-links {
+                display: flex;
+            }
+            nav .logo-mobile-placeholder {
+                display: flex;
+                align-items: center;
+                padding-left: 1em;
+                font-size: 1.2em;
+                font-weight: 600;
+                color: var(--light-text);
+            }
+
+            section {
+                padding: 3em 1em;
+            }
+            h2 {
+                font-size: 2em;
+            }
+            .slider {
+                height: 300px;
+            }
+            .slides img {
+                height: 300px;
+            }
+            .events {
+                height: 350px; /* **FIX**: Maintain fixed height for events on mobile */
+                padding: 1.5em;
+            }
+            .event-list-container {
+                max-height: 200px; /* **FIX**: Explicit max-height for container to crop UL */
+            }
+            .welcome-section p {
+                font-size: 0.95em;
+                padding: 0 0.8em;
+            }
+            .welcome-circle {
+                width: 150px;
+                height: 150px;
+                font-size: 1.1em;
+            }
+            .video-container {
+                width: 95%;
+            }
+            .staff-member {
+                width: 130px;
+                padding: 1.2em;
+            }
+            .staff-member img {
+                width: 90px;
+                height: 90px;
+            }
+            .program-card {
+                padding: 2em;
+            }
+            .program-card h3 {
+                font-size: 1.4em;
+            }
+            /* Gallery adjustments for tablet */
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            }
+            #admission-cta h2 {
+                font-size: 2.2em;
+            }
+            #admission-cta p {
+                font-size: 1.05em;
+            }
+            #admission-cta .btn {
+                padding: 12px 25px;
+                font-size: 1em;
+            }
+            .popup {
+                padding: 25px;
+            }
+            .popup h2 {
+                font-size: 1.6em;
+            }
+            .popup p {
+                font-size: 0.95em;
+            }
+            .popup .btn {
+                padding: 10px 20px;
+                font-size: 0.9em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 1.8em;
+            }
+            header p {
+                font-size: 0.9em;
+            }
+            .hero-section {
+                padding: 2.5em 0.5em;
+            }
+            .slider {
+                height: 240px;
+            }
+            .slides img {
+                height: 240px;
+            }
+            .events {
+                width: 95%;
+                min-width: unset;
+                padding: 1em;
+                height: 300px; /* **FIX**: Maintain fixed height for events on small mobile */
+            }
+            .event-list-container {
+                max-height: 180px; /* **FIX**: Explicit max-height for container to crop UL */
+            }
+            .welcome-circle {
+                width: 120px;
+                height: 120px;
+                font-size: 0.9em;
+            }
+            #about-us-snippet img {
+                max-width: 100%;
+            }
+            .staff-member {
+                width: 100px;
+                padding: 1em;
+            }
+            .staff-member img {
+                width: 70px;
+                height: 70px;
+            }
+            .program-grid {
+                grid-template-columns: 1fr;
+            }
+            /* Gallery adjustments for small phone */
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+            .scroll-to-top {
+                width: 45px;
+                height: 45px;
+                font-size: 22px;
+                bottom: 20px;
+                right: 20px;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="header-top">
-        <div class="contact-info">
-            <small>Email: sanjoeblessedschool@gmail.com | Contact: 9961452061</small>
-        </div>
-        <div class="date-time" id="date-time"></div>
-    </div>
-    <header>
-        <img src="logo.jpg" alt="SANJOE Logo" width="50">
-        <h1>SANJOE PUBLIC SCHOOL KANIYARAM</h1>
-        <p>CBSE AFFILIATION NUMBER : 930992</p>
-    </header>
-    <nav>
-        <a href="about-us.html">About Us</a>
-	<a href="general.html">General</a>
-        <a href="staff.html">Staff</a>
-	<a href="kindergarten.html">Kindergarten</a>
-        <a href="gallery.html">Gallery</a>
-        <a href="https://forms.gle/QhPGrzfeuXSUerYa6">Admission</a>
-        <a href="mandatory-disclosure.html">Mandatory Disclosure</a>
-	<a href="contact.html">Contact</a>
-    </nav>
-    <section id="home">
-        <div class="events">
-            <h2>Upcoming Events</h2>
-            <ul>
-                <li><a href="https://www.cbse.gov.in/cbsenew/documents/Date_Sheet_Main_Exam_2025_20112024.pdf">Date sheet for Class X and XII for Board Examinations - 2025</a></li>
-                <li>Parent-Teacher Meeting on February</li>
-                <li>SA II on March 2025</li>
-                <!-- Add more events as needed -->
-            </ul>
-        </div>
-        <div class="slider">
-            <div class="slides">
-                <img src="slide1.jpg" alt="Slide 1" class="active">
-                <img src="slide2.jpg" alt="Slide 2">
-                <img src="slide3.jpg" alt="Slide 3">
-                <!-- Add more slides as needed -->
-            </div>
-        </div>
-    </section>
-    <div class="welcome-section">
-    <div class="welcome-circle">
-        <div class="front">Welcome to<br>Sanjoe School</div>
-        <div class="back"></div>
-    </div>
-    <div>
-            <p>Sanjoe Public School in Kaniyaram is a beacon of education, known for its commitment to nurturing young minds from pre-kg to class 10. Affiliated with the Central Board of Secondary Education (CBSE), the school offers a comprehensive curriculum designed to instill academic excellence, moral values, and holistic development in its students.
-            The school campus is a vibrant hub of learning and growth, where dedicated educators employ innovative teaching methods to make education engaging and effective. Sanjoe Public School prides itself on its state-of-the-art facilities, well-equipped classrooms, and a wide range of extracurricular activities that ensure the all-round development of students, fostering their intellectual, emotional, and physical growth.
-            At Sanjoe, students are encouraged to explore their interests and talents through various clubs, sports, arts, and cultural programs. The school’s focus on creating a supportive and inclusive environment helps students build confidence, develop leadership skills, and become well-rounded individuals.
-            Sanjoe Public School in Kaniyaram believes in the potential of every student and strives to create an atmosphere that encourages curiosity, creativity, and a lifelong love for learning. Through innovative teaching methodologies and personalized attention, the school aims to unlock each student's unique talents and aspirations, preparing them to excel in an ever-changing world.
-            With its unwavering commitment to excellence and a nurturing environment conducive to growth, Sanjoe Public School in Kaniyaram stands as a beacon of quality education, shaping the future leaders of tomorrow.</p>
-        </div>
+    <div id="preloader">
+        <div class="loader"></div>
     </div>
 
-<section id="video-section">
-     <!-- <h2>School Highlights</h2> -->
-    <div class="video-container">
-        <video id="highlight-video" controls muted>
-            <source src="school-highlight.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-    </div>
-</section>
-
-
-<div class="visionary-container">
-    <div class="visionary-box">
-        <img src="visionaries.jpg" alt="Our Visionaries">
-    </div>
-</div>
-
-    <section id="staff">
-        <h2>Our Staff</h2>
-        <div class="staff-container">
-            <div class="staff-member">
-                <img src="staff/1.jpg" alt="Sr. Rosily E V">
-                <p>Sr. Rosily E V</p>
-            </div>
-            <div class="staff-member">
-                <img src="staff/2.jpg" alt="Mrs. Immaculate">
-                <p>Mrs. Immaculate</p>
-            </div>
-            <div class="staff-member">
-                <img src="staff/3.jpg" alt="Mr. Sabu C K">
-                <p>Mr. Sabu C K</p>
-            </div>
-            <div class="staff-member">
-                <img src="staff/4.jpg" alt="Mrs. Jini Joseph">
-                <p>Mrs. Jini Joseph</p>
-            </div>
-            <div class="staff-member">
-                <img src="staff/5.jpg" alt="Mr. Linson R P">
-                <p>Mr. Linson R P</p>
-            </div>
-            <div class="staff-member">
-                <img src="staff/6.jpg" alt="Mr. Jobby Kurian">
-                <p>Mr. Jobby Kurian</p>
-            </div>
-            <div class="staff-member">
-                <img src="staff/7.jpg" alt="Mr. Albin Agustin">
-                <p>Mr. Albin Agustin</p>
-            </div>
-            <div class="staff-member">
-                <img src="staff/8.jpg" alt="Mr. Bajil Thankachan">
-                <p>Mr. Bajil Thankachan</p>
-            </div>
-            <div class="staff-member">
-                <img src="staff/9.jpg" alt="Mrs. Laya Mathew">
-                <p>Mrs. Laya Mathew</p>
-            </div>
-            <div class="staff-member">
-                <img src="staff/10.jpg" alt="Mrs. Jisha Sebastian">
-                <p>Mrs. Jisha Sebastian</p>
-            </div>
-            <div class="staff-member">
-                <img src="staff/11.jpg" alt="Mrs. Jomol K T">
-                <p>Mrs. Jomol K T</p>
-            </div>
-            <div class="staff-member">
-                <img src="staff/12.jpg" alt="Mrs. Sheena C U">
-                <p>Mrs. Sheena C U</p>
-            </div>
-            <div class="staff-member">
-                <img src="staff/13.jpg" alt="Mrs. Simi K M">
-                <p>Mrs. Simi K M</p>
-            </div>
-            <div class="staff-member">
-                <img src="staff/14.jpg" alt="Sr. Leelamma Varkey">
-                <p>Sr. Leelamma Varkey</p>
-            </div>
-<div class="staff-member">
-                <img src="staff/15.jpg" alt="Ms.Ranjitha Rodrigues">
-                <p>Ms.Ranjitha Rodrigues</p>
-            </div>
-<div class="staff-member">
-                <img src="staff/16.jpg" alt="Mrs.Joshna George">
-                <p>Mrs.Joshna George</p>
-            </div>
-<div class="staff-member">
-                <img src="staff/17.jpg" alt="Sr.Sindhu">
-                <p>Sr.Sindhu</p>
-            </div>
-<div class="staff-member">
-                <img src="staff/18.jpg" alt="Mr.Bibin Jose">
-                <p>Mr.Bibin Jose</p>
-            </div>
-<div class="staff-member">
-                <img src="staff/19.jpg" alt="Mr.Amal Joy">
-                <p>Mr.Amal Joy</p>
-            </div>
-<div class="staff-member">
-                <img src="staff/20.jpg" alt="Sr.Jessy V Y">
-                <p>Sr. Jessy V Y</p>
-            </div>
-<div class="staff-member">
-                <img src="staff/21.jpg" alt="Mrs. Minimole K J">
-                <p>Mrs.Minimole K J</p>
-            </div>
-<div class="staff-member">
-                <img src="staff/22.jpg" alt="Mr. V P Dibin">
-                <p>Mr. V P Dibin</p>
-            </div>
-
-
-            <!-- Add more staff members as needed -->
-
-        </div>
-    </section>
-
-
-    
-
-<section id="gallery">
-        <h2>Gallery</h2>
-        <div class="gallery-container">
-            <div class="gallery">
-                <img src="gallery/1.jpg" alt="Gallery Image 1">
-                <img src="gallery/2.jpg" alt="Gallery Image 2">
-                <img src="gallery/3.jpg" alt="Gallery Image 3">
-		<img src="gallery/4.jpg" alt="Gallery Image 4">
-		<img src="gallery/5.jpg" alt="">
-                <!-- Add more gallery images as needed -->
-            </div>
-        </div>
-    </section>
-    <footer>
-        <p>&copy; 2024 Sanjoe Public School Kaniyaram. All rights reserved.</p>
-        <p>Contact Us: 9961452061 | sanjoeblessedschool@gmail.com</p>
-        <p>Location: Kaniyaram, Wayanad, Kerala, India</p>
-    </footer>
-
- <!-- Popup Window -->
     <div class="popup" id="admission-popup">
         <h2>ADMISSION STARTED 2026-2027</h2>
         <p>Enroll now to secure your child's future at </p><p>Sanjoe Public School</p>
@@ -649,91 +1509,510 @@ video {
         </div>
     </div>
 
-    <button class="scroll-to-top" id="scrollToTopBtn">↑</button>
-    <script>
+    <div class="header-top">
+        <div class="contact-info">
+            <small>Email: sanjoeblessedschool@gmail.com | Contact: 9961452061</small>
+        </div>
+        <div class="date-time" id="date-time"></div>
+    </div>
 
-// Show the popup on page load
-        document.addEventListener("DOMContentLoaded", function () {
+    <header>
+        <img src="logo.jpg" alt="SANJOE Logo">
+        <h1>SANJOE PUBLIC SCHOOL KANIYARAM</h1>
+        <p>CBSE AFFILIATION NUMBER : 930992</p>
+    </header>
+
+    <nav id="main-nav">
+        <div class="logo-mobile-placeholder"></div>
+        <div class="menu-toggle" onclick="toggleMenu()">&#9776;</div>
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="about-us.html">About Us</a>
+            <a href="general.html">General</a>
+            <a href="staff.html">Staff</a>
+            <a href="kindergarten.html">Kindergarten</a>
+            <a href="gallery.html">Gallery</a>
+            <a href="https://forms.gle/QhPGrzfeuXSUerYa6" target="_blank" rel="noopener noreferrer">Admission</a>
+            <a href="mandatory-disclosure.html">Mandatory Disclosure</a>
+            <a href="contact.html">Contact</a>
+        </div>
+    </nav>
+
+    <section id="home" class="hero-section">
+        <div class="slider">
+            <div class="slides">
+                <img src="slide1.jpg" alt="School Activities" class="active">
+                <img src="slide2.jpg" alt="Students Learning">
+                <img src="slide3.jpg" alt="School Campus View">
+                <img src="slide4.jpg" alt="Sports Event">
+                <img src="slide5.jpg" alt="Cultural Program">
+            </div>
+        </div>
+
+        <div class="events">
+            <h2>Upcoming Events</h2>
+            <div class="event-list-container">
+                <ul id="event-list">
+                    <li><a href="https://www.cbse.gov.in/cbsenew/documents/CBSE_DATE_SHEET_X_XII_Final_30102025.pdf" target="_blank" rel="noopener noreferrer">Date sheet for Class X and XII for Board Examinations - 2026</a></li>
+                    <li>Parent-Teacher Meeting on February 2026</li>
+                    <li>SA II on March 2026</li>
+                    <li>Christmas Programme: December 19, 2025</li>
+                    <li>Science Fair: December 15, 2025</li>
+                    <li>SAFAL: December, 2025</li>
+                    <li>New Academic Session Begins: June 01, 2026</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="welcome-section">
+        <div class="welcome-circle">
+            <div class="front">Welcome to<br>Sanjoe School</div>
+            <div class="back"></div>
+        </div>
+        <div>
+            <h2>A Holistic Learning Experience</h2>
+            <p id="welcome-text">
+                Sanjoe Public School in Kaniyaram is a beacon of education, known for its commitment to nurturing young minds from pre-kg to class 10. Affiliated with the Central Board of Secondary Education (CBSE), the school offers a comprehensive curriculum designed to instill academic excellence, moral values, and holistic development in its students.
+                The school campus is a vibrant hub of learning and growth, where dedicated educators employ innovative teaching methods to make education engaging and effective. Sanjoe Public School prides itself on its state-of-the-art facilities, well-equipped classrooms, and a wide range of extracurricular activities that ensure the all-round development of students, fostering their intellectual, emotional, and physical growth.
+                At Sanjoe, students are encouraged to explore their interests and talents through various clubs, sports, arts, and cultural programs. The school’s focus on creating a supportive and inclusive environment helps students build confidence, develop leadership skills, and become well-rounded individuals.
+                Sanjoe Public School in Kaniyaram believes in the potential of every student and strives to create an atmosphere that encourages curiosity, creativity, a lifelong love for learning. Through innovative teaching methodologies and personalized attention, the school aims to unlock each student's unique talents and aspirations, preparing them to excel in an ever-changing world.
+                With its unwavering commitment to excellence and a nurturing environment conducive to growth, Sanjoe Public School in Kaniyaram stands as a beacon of quality education, shaping the future leaders of tomorrow.
+            </p>
+            <button class="read-more-btn" id="read-more-btn">Read More</button>
+        </div>
+    </section>
+
+    <section id="video-section">
+        <h2>School Highlights</h2>
+        <div class="video-container">
+            <video id="highlight-video" controls muted playsinline>
+                <source src="school-highlight.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    </section>
+
+    <section id="about-us-snippet">
+        <h2>About Sanjoe Public School</h2>
+        <div class="content">
+            <img src="sanjoe.jpg" alt="Sanjoe Public School Building">
+            <div class="text-content">
+                <p>Sanjoe Public School Kaniyaram is dedicated to providing a nurturing and stimulating environment where every child can achieve their full potential. Our mission is to foster academic excellence, critical thinking, and strong moral values, preparing students to become responsible and compassionate global citizens.</p>
+                <p>We pride ourselves on our experienced faculty, innovative teaching methodologies, and a vibrant community that encourages holistic development. Explore our comprehensive approach to education.</p>
+                <a href="about-us.html" class="btn">Learn More About Us</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="staff-section" class="visionary-staff-wrapper">
+        <div class="visionary-box">
+            <h2>Our Visionaries</h2>
+            <img src="visionaries.jpg" alt="Our Visionaries">
+        </div>
+
+        <div id="staff">
+            <h2>Our Dedicated Staff</h2>
+            <div class="staff-scrollable-content">
+                <div class="staff-container">
+                    <div class="staff-member">
+                        <img src="staff/1.jpg" alt="Sr. Rosily E V">
+                        <p>Sr. Rosily E V</p>
+                    </div>
+                    <div class="staff-member">
+                        <img src="staff/2.jpg" alt="Mrs. Immaculate">
+                        <p>Mrs. Immaculate</p>
+                    </div>
+                    <div class="staff-member">
+                        <img src="staff/3.jpg" alt="Mr. Sabu C K">
+                        <p>Mr. Sabu C K</p>
+                    </div>
+                    <div class="staff-member">
+                        <img src="staff/4.jpg" alt="Mrs. Jini Joseph">
+                        <p>Mrs. Jini Joseph</p>
+                    </div>
+                    <div class="staff-member">
+                        <img src="staff/5.jpg" alt="Mr. Linson R P">
+                        <p>Mr. Linson R P</p>
+                    </div>
+                    <div class="staff-member">
+                        <img src="staff/6.jpg" alt="Mr. Jobby Kurian">
+                        <p>Mr. Jobby Kurian</p>
+                    </div>
+                    <div class="staff-member">
+                        <img src="staff/7.jpg" alt="Mr. Albin Agustin">
+                        <p>Mr. Albin Agustin</p>
+                    </div>
+                    <div class="staff-member">
+                        <img src="staff/8.jpg" alt="Mr. Bajil Thankachan">
+                        <p>Mr. Bajil Thankachan</p>
+                    </div>
+                    <div class="staff-member">
+                        <img src="staff/9.jpg" alt="Mrs. Laya Mathew">
+                        <p>Mrs. Laya Mathew</p>
+                    </div>
+                    <div class="staff-member">
+                        <img src="staff/10.jpg" alt="Mrs. Jisha Sebastian">
+                        <p>Mrs. Jisha Sebastian</p>
+                    </div>
+                    <div class="staff-member">
+                        <img src="staff/11.jpg" alt="Mrs. Jomol K T">
+                        <p>Mrs. Jomol K T</p>
+                    </div>
+                    <div class="staff-member">
+                        <img src="staff/12.jpg" alt="Mrs. Sheena C U">
+                        <p>Mrs. Sheena C U</p>
+                    </div>
+                    <div class="staff-member">
+                        <img src="staff/13.jpg" alt="Mrs. Simi K M">
+                        <p>Mrs. Simi K M</p>
+                    </div>
+                    <div class="staff-member">
+                        <img src="staff/14.jpg" alt="Sr. Leelamma Varkey">
+                        <p>Sr. Leelamma Varkey</p>
+                    </div>
+                    <div class="staff-member">
+                        <img src="staff/15.jpg" alt="Ms.Ranjitha Rodrigues">
+                        <p>Ms.Ranjitha Rodrigues</p>
+                    </div>
+                    <div class="staff-member">
+                        <img src="staff/16.jpg" alt="Mrs.Joshna George">
+                        <p>Mrs.Joshna George</p>
+                    </div>
+                    <div class="staff-member">
+                        <img src="staff/17.jpg" alt="Sr.Sindhu">
+                        <p>Sr.Sindhu</p>
+                    </div>
+                    <div class="staff-member">
+                        <img src="staff/18.jpg" alt="Mr.Bibin Jose">
+                        <p>Mr.Bibin Jose</p>
+                    </div>
+                    <div class="staff-member">
+                        <img src="staff/19.jpg" alt="Mr.Amal Joy">
+                        <p>Mr.Amal Joy</p>
+                    </div>
+                    <div class="staff-member">
+                        <img src="staff/20.jpg" alt="Sr.Jessy V Y">
+                        <p>Sr. Jessy V Y</p>
+                    </div>
+                    <div class="staff-member">
+                        <img src="staff/21.jpg" alt="Mrs. Minimole K J">
+                        <p>Mrs.Minimole K J</p>
+                    </div>
+                    <div class="staff-member">
+                        <img src="staff/22.jpg" alt="Mr. V P Dibin">
+                        <p>Mr. V P Dibin</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="programs-snippet">
+        <h2>Our Academic Programs</h2>
+        <div class="program-grid">
+            <div class="program-card">
+                <h3>Kindergarten</h3>
+                <p>Engaging and fun-filled learning for our youngest students, fostering early development and a love for learning.</p>
+                <a href="kindergarten.html" class="btn">Explore Kindergarten</a>
+            </div>
+            <div class="program-card">
+                <h3>Primary Education</h3>
+                <p>A strong foundation in core subjects, encouraging curiosity and critical thinking in a supportive environment.</p>
+                <a href="general.html" class="btn">View Primary Curriculum</a>
+            </div>
+            <div class="program-card">
+                <h3>Secondary Education</h3>
+                <p>Challenging academics and diverse extracurriculars to prepare students for higher education and future careers.</p>
+                <a href="general.html" class="btn">Learn About Secondary</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="gallery">
+        <h2>School Gallery</h2>
+        <div class="gallery-container">
+            <div class="gallery-grid">
+                <img src="gallery/1.jpg" alt="School Event Image 1" class="gallery-item">
+                <img src="gallery/2.jpg" alt="School Event Image 2" class="gallery-item">
+                <img src="gallery/3.jpg" alt="School Event Image 3" class="gallery-item">
+                <img src="gallery/4.jpg" alt="School Event Image 4" class="gallery-item">
+                <img src="gallery/5.jpg" alt="School Event Image 5" class="gallery-item">
+                <img src="gallery/6.jpg" alt="School Event Image 6" class="gallery-item">
+                <img src="gallery/7.jpg" alt="School Event Image 7" class="gallery-item">
+                <img src="gallery/8.jpg" alt="School Event Image 8" class="gallery-item">
+                </div>
+        </div>
+    </section>
+
+    <section id="admission-cta">
+        <h2>Admissions Open for 2025-2026!</h2>
+        <p>Give your child the gift of quality education and a vibrant learning community at Sanjoe Public School. Limited seats available!</p>
+        <a href="https://forms.gle/QhPGrzfeuXSUerYa6" target="_blank" rel="noopener noreferrer" class="btn">Apply Now</a>
+    </section>
+
+    <section id="contact-snippet">
+        <h2>Get in Touch</h2>
+        <p>We are here to assist you with any queries.</p>
+        <p><strong>Email:</strong> sanjoeblessedschool@gmail.com</p>
+        <p><strong>Phone:</strong> 9961452061</p>
+        <p><strong>Location:</strong> Kaniyaram, Wayanad, Kerala, India</p>
+        <p><a href="contact.html" style="color: var(--primary-color); text-decoration: none; font-weight: 600;">View Contact Page for Map & Form</a></p>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Sanjoe Public School Kaniyaram. All rights reserved.</p>
+  
+    </footer>
+
+    <button class="scroll-to-top" id="scrollToTopBtn">↑</button>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Preloader fade out logic
+            const preloader = document.getElementById('preloader');
+            if (preloader) {
+                preloader.style.opacity = '0';
+                setTimeout(() => {
+                    preloader.style.display = 'none';
+                }, 600); // Matches CSS transition duration
+            }
+
+            // Popup logic for admission
+            const admissionPopup = document.getElementById("admission-popup");
             const currentDate = new Date();
-            const startDate = new Date("2025-11-25");
-            const endDate = new Date("2026-06-01");
+            // Admission period is Nov 25, 2025 - June 1, 2026 for the 2026-2027 academic year
+            const startDate = new Date("2025-11-25T00:00:00");
+            const endDate = new Date("2026-06-01T23:59:59");
 
             if (currentDate >= startDate && currentDate <= endDate) {
-                document.getElementById("admission-popup").style.display = "block";
+                setTimeout(() => {
+                    if (admissionPopup) {
+                        admissionPopup.classList.add('show');
+                    }
+                }, 1000);
             }
-        });
 
-        // Close popup function
-        function closePopup() {
-            document.getElementById("admission-popup").style.display = "none";
-        }
+            // Function to close the popup
+            window.closePopup = function() {
+                if (admissionPopup) {
+                    admissionPopup.classList.remove('show');
+                    setTimeout(() => {
+                        admissionPopup.style.display = "none";
+                    }, 500); // Matches CSS animation duration
+                }
+            }
 
-        function updateTime() {
-            const now = new Date();
-            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' };
-            document.getElementById('date-time').textContent = now.toLocaleDateString('en-US', options);
-        }
-        setInterval(updateTime, 1000);
-        updateTime(); // Initial call to set the time immediately
+            // Date and Time update in the header-top section
+            function updateTime() {
+                const now = new Date();
+                const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' };
+                const dateTimeElement = document.getElementById('date-time');
+                if (dateTimeElement) {
+                    dateTimeElement.textContent = now.toLocaleDateString('en-US', options);
+                }
+            }
+            setInterval(updateTime, 1000);
+            updateTime();
 
-        let slideIndex = 0;
-        const slides = document.querySelectorAll('.slides img');
-        const totalSlides = slides.length;
+            // Image Slider functionality
+            let slideIndex = 0;
+            const slides = document.querySelectorAll('.slides img');
+            const totalSlides = slides.length;
 
-        function showNextSlide() {
-            slides[slideIndex].classList.remove('active');
-            slideIndex = (slideIndex + 1) % totalSlides;
-            slides[slideIndex].classList.add('active');
-        }
-        setInterval(showNextSlide, 3000);
+            function showNextSlide() {
+                if (slides.length === 0) return;
+                slides[slideIndex].classList.remove('active');
+                slideIndex = (slideIndex + 1) % totalSlides;
+                slides[slideIndex].classList.add('active');
+            }
+            if (slides.length > 0) {
+                slides[0].classList.add('active');
+            }
+            setInterval(showNextSlide, 3500);
 
-        document.querySelectorAll('.gallery img').forEach(img => {
-            img.addEventListener('click', () => {
-                const src = img.src;
-                const modal = document.createElement('div');
-                modal.classList.add('modal');
-                modal.innerHTML = `
-                    <span class="close">&times;</span>
-                    <img src="${src}" alt="Gallery Image">
-                `;
-                modal.querySelector('.close').addEventListener('click', () => document.body.removeChild(modal));
-                modal.addEventListener('click', (e) => {
-                    if (e.target === modal) {
-                        document.body.removeChild(modal);
+            // Gallery Modal for larger image view on click - UPDATED SELECTOR
+            document.querySelectorAll('.gallery-grid img').forEach(img => {
+                img.addEventListener('click', () => {
+                    const src = img.src;
+                    const modal = document.createElement('div');
+                    modal.classList.add('modal');
+                    modal.innerHTML = `
+                        <span class="close">&times;</span>
+                        <img src="${src}" alt="Gallery Image">
+                    `;
+                    modal.querySelector('.close').addEventListener('click', () => document.body.removeChild(modal));
+                    modal.addEventListener('click', (e) => {
+                        if (e.target === modal) {
+                            document.body.removeChild(modal);
+                        }
+                    });
+                    document.body.appendChild(modal);
+                });
+            });
+
+            // Scroll to Top Button functionality
+            const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 400) {
+                    if (scrollToTopBtn) {
+                        scrollToTopBtn.style.display = 'flex';
+                        scrollToTopBtn.style.opacity = '1';
+                    }
+                } else {
+                    if (scrollToTopBtn) {
+                        scrollToTopBtn.style.opacity = '0';
+                        setTimeout(() => {
+                            scrollToTopBtn.style.display = 'none';
+                        }, 300);
+                    }
+                }
+            });
+
+            if (scrollToTopBtn) {
+                scrollToTopBtn.addEventListener('click', () => {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+            }
+
+            // Video Autoplay/Pause on Scroll (Intersection Observer)
+            const video = document.getElementById('highlight-video');
+            const videoSection = document.getElementById('video-section');
+
+            if (video && videoSection) {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            video.play();
+                        } else {
+                            video.pause();
+                        }
+                    });
+                }, { threshold: 0.6 }); // More of the video needs to be visible
+                observer.observe(videoSection);
+            }
+
+            // Read More/Show Less functionality for Welcome Text
+            const welcomeText = document.getElementById('welcome-text');
+            const readMoreBtn = document.getElementById('read-more-btn');
+            const originalText = welcomeText ? welcomeText.innerHTML : '';
+            const truncatedTextLength = 450; // Keep same truncation length for consistency
+            let isExpanded = false;
+
+            if (welcomeText && readMoreBtn) {
+                // Initial truncation based on textContent (for accurate length check before trimming HTML)
+                const fullText = welcomeText.textContent.trim();
+                if (fullText.length > truncatedTextLength) {
+                    // Truncate only the displayed text, keep original in JS for expansion
+                    const truncatedHTML = originalText.substring(0, truncatedTextLength) + '...';
+                    welcomeText.innerHTML = truncatedHTML;
+                    readMoreBtn.style.display = 'block';
+                } else {
+                    readMoreBtn.style.display = 'none';
+                }
+
+                readMoreBtn.addEventListener('click', () => {
+                    if (isExpanded) {
+                        welcomeText.innerHTML = originalText.substring(0, truncatedTextLength) + '...';
+                        readMoreBtn.textContent = 'Read More';
+                        welcomeText.classList.remove('expanded');
+                    } else {
+                        welcomeText.innerHTML = originalText;
+                        readMoreBtn.textContent = 'Show Less';
+                        welcomeText.classList.add('expanded');
+                    }
+                    isExpanded = !isExpanded;
+                });
+            }
+
+
+            // Smooth scroll for internal navigation links
+            document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        // Close menu on click (for mobile)
+                        const nav = document.getElementById('main-nav');
+                        if (nav.classList.contains('open')) {
+                            nav.classList.remove('open');
+                        }
+
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth'
+                        });
                     }
                 });
-                document.body.appendChild(modal);
             });
-        });
 
-        const scrollToTopBtn = document.getElementById('scrollToTopBtn');
-        window.addEventListener('scroll', () => {
-            if (window.pageYOffset > 300) {
-                scrollToTopBtn.style.display = 'flex';
-            } else {
-                scrollToTopBtn.style.display = 'none';
+            // Mobile menu toggle function
+            window.toggleMenu = function() {
+                const nav = document.getElementById('main-nav');
+                nav.classList.toggle('open');
             }
-        });
 
-        scrollToTopBtn.addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-
-const video = document.getElementById('highlight-video');
-    const videoSection = document.getElementById('video-section');
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                video.play();
-            } else {
-                video.pause();
+            // Logic for fixing the scrolling notification issue and continuous loop
+            const eventList = document.getElementById('event-list');
+            if (eventList) {
+                const listItemsHTML = eventList.innerHTML;
+                // Duplicate the list items to enable the infinite scroll effect
+                eventList.innerHTML += listItemsHTML;
             }
+
+
+            // Function to adjust staff section height dynamically
+            function adjustStaffSectionHeight() {
+                const visionaryBox = document.querySelector('.visionary-box');
+                const staffSection = document.getElementById('staff');
+                const staffScrollableContent = document.querySelector('.staff-scrollable-content');
+
+                if (visionaryBox && staffSection && staffScrollableContent && window.innerWidth >= 1024) {
+                    const visionaryHeight = visionaryBox.offsetHeight;
+                    const staffH2 = staffSection.querySelector('h2');
+                    // Ensure the h2 and margin calculation is accurate
+                    const staffH2Height = staffH2 ? staffH2.offsetHeight + parseFloat(window.getComputedStyle(staffH2).marginBottom) : 0;
+                    const staffPaddingTop = parseFloat(window.getComputedStyle(staffSection).paddingTop);
+                    const staffPaddingBottom = parseFloat(window.getComputedStyle(staffSection).paddingBottom);
+
+                    // Calculate the available height for the scrollable content
+                    const calculatedHeight = visionaryHeight - staffH2Height - staffPaddingTop - staffPaddingBottom;
+                    staffScrollableContent.style.maxHeight = `${Math.max(calculatedHeight, 300)}px`;
+                } else if (staffScrollableContent) {
+                    // Reset max-height on smaller screens so it auto-adjusts
+                    staffScrollableContent.style.maxHeight = '450px'; /* Keep a max-height on non-stacked mobile for aesthetics */
+                }
+            }
+
+            window.addEventListener('load', adjustStaffSectionHeight);
+            window.addEventListener('resize', adjustStaffSectionHeight);
+
+            // Placeholder for "About Us" image if it doesn't exist
+            const aboutUsImg = document.querySelector('#about-us-snippet img');
+            if (aboutUsImg && !aboutUsImg.complete && aboutUsImg.naturalWidth === 0) {
+                aboutUsImg.src = 'overview.jpg'; // Provide a default placeholder image
+                aboutUsImg.alt = 'Sanjoe Public School Overview';
+            }
+
+            /* NEW MODERN GALLERY TECHNIQUE: Fading/Staggered Reveal on Intersection */
+            const galleryItems = document.querySelectorAll('.gallery-grid img');
+            const galleryObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        // Staggered delay for a slick effect
+                        setTimeout(() => {
+                            entry.target.classList.add('reveal');
+                            observer.unobserve(entry.target); // Stop observing once revealed
+                        }, index * 100);
+                    }
+                });
+            }, { threshold: 0.1 }); // Starts animation when 10% of the image is visible
+
+            galleryItems.forEach(item => {
+                galleryObserver.observe(item);
+            });
+            /* END NEW GALLERY TECHNIQUE */
         });
-    }, { threshold: 0.5 });
-
-    observer.observe(videoSection);
-
     </script>
 </body>
 </html>
