@@ -3,140 +3,327 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sanjoe Public School Gallery</title>
+    <title>Sanjoe Public School Gallery - Modern</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f0f8ff;
-            color: #000;
-            text-align: center;
+        /* --- 🎨 CSS Variables and Base Styles --- */
+        :root {
+            --primary-color: #004080; /* Deep Blue */
+            --secondary-color: #f7a600; /* Gold/Orange Accent */
+            --text-color: #333;
+            --light-bg: #f8f9fa;
+            --white: #ffffff;
+            --font-family: 'Poppins', sans-serif;
+            --transition-speed: 0.3s;
         }
-        .header-top {
-            display: flex;
-            justify-content: space-between;
-            padding: 0.5em;
-            background-color: #E8E1DF;
-            color: #021839;
-        }
-        .date-time {
-            font-size: 0.8em;
-            font-weight: bold;
-        }
-        header {
-            background-color: #003366;
-            color: #ffffff;
-            padding: 1em 0;
-        }
-        header h1 {
-            animation: fadeIn 1.5s ease-out;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        nav {
-            display: flex;
-            justify-content: center;
-            background-color: #008000;
-            position: relative;
-        }
-        nav a {
-            color: #ffffff;
-            padding: 1em;
-            text-decoration: none;
-        }
-        nav a:hover {
-            background-color: #cbd394;
-        }
-        section {
-            padding: 2em;
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-        .gallery-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1em;
-        }
-        .gallery-item {
-            position: relative;
-            cursor: pointer;
-            overflow: hidden;
-            transition: transform 0.3s;
-        }
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border: 2px solid #ccc;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s, filter 0.3s;
-        }
-        .gallery-item:hover img {
-            transform: scale(1.1);
-            filter: brightness(0.7);
-        }
-        .gallery-item .description-box {
-            display: none;
-            position: absolute;
-            bottom: 0;
-            background-color: rgba(0, 0, 0, 0.7);
-            color: #fff;
-            width: 100%;
-            text-align: center;
-            padding: 0.5em;
+
+        *, *::before, *::after {
             box-sizing: border-box;
         }
-        .gallery-item:hover .description-box {
-            display: block;
+
+        body {
+            font-family: var(--font-family);
+            margin: 0;
+            padding: 0;
+            background-color: var(--light-bg);
+            color: var(--text-color);
+            line-height: 1.6;
         }
+
+        h1, h2, h3 {
+            color: var(--primary-color);
+            margin-top: 0;
+            font-weight: 700;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--primary-color);
+        }
+        
+        /* --- 📞 Top Bar & Contact Info --- */
+        .header-top {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 0.5rem 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+        }
+        .header-top a {
+            color: var(--white);
+            transition: color var(--transition-speed);
+            margin-left: 1rem;
+        }
+        .header-top a:hover {
+            color: var(--secondary-color);
+        }
+        .header-top i {
+            margin-right: 0.3rem;
+        }
+        .contact-info {
+            display: flex;
+            gap: 1rem;
+        }
+
+        /* --- 🏫 Main Header & Logo --- */
+        .main-header {
+            background-color: var(--white);
+            padding: 1rem 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            text-align: center;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .logo-container img {
+            width: 70px;
+            height: 70px;
+            object-fit: contain;
+            border-radius: 50%;
+        }
+
+        .school-title h1 {
+            font-size: clamp(1.5rem, 4vw, 2rem); /* Responsive Font Size */
+            margin: 0;
+            line-height: 1.2;
+        }
+
+        .school-title p {
+            color: #6c757d;
+            font-size: 0.9rem;
+            margin: 0;
+            font-weight: 400;
+        }
+
+        /* --- 🧭 Navigation Bar (Modern Moving Graphic) --- */
+        .navbar {
+            /* Fallback and Base Color */
+            background-color: var(--secondary-color); 
+            /* Moving Gradient Effect */
+            background: linear-gradient(90deg, var(--secondary-color) 0%, #ffc107 50%, var(--secondary-color) 100%);
+            background-size: 200% 100%;
+            animation: moveGradient 10s linear infinite;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 100;
+        }
+
+        @keyframes moveGradient {
+            0% { background-position: 100% 0%; }
+            100% { background-position: 0% 0%; }
+        }
+
+        .nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            padding: 1rem 1.25rem;
+            text-decoration: none;
+            font-weight: 600;
+            display: block;
+            transition: background-color var(--transition-speed);
+        }
+
+        .nav-links a:hover,
+        .nav-links a[aria-current="page"] {
+            background-color: rgba(255, 255, 255, 0.2); 
+            color: var(--white);
+        }
+
+        /* Hamburger icon for mobile */
+        .menu-toggle {
+            display: none;
+            cursor: pointer;
+            padding: 1rem 1.5rem;
+            color: var(--white);
+            font-size: 1.5rem;
+            border: none;
+            background: none;
+            z-index: 101; 
+        }
+
+        /* --- 🖼️ Gallery Section (Masonry/Grid) --- */
+        .content-section {
+            padding: 3rem 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .content-section h2 {
+            text-align: center;
+            margin-bottom: 2.5rem;
+            position: relative;
+            padding-bottom: 0.75rem;
+            font-size: clamp(1.8rem, 5vw, 2.5rem);
+            font-weight: 700;
+        }
+
+        .content-section h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background-color: var(--secondary-color);
+            border-radius: 2px;
+        }
+
+        /* --- Gallery Grid Layout (Modern Responsive Grid) --- */
+        .gallery-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            transition: transform var(--transition-speed) ease-in-out;
+            cursor: pointer;
+        }
+            
+        .gallery-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            /* Fixed height for uniformity in this design */
+            height: 250px; 
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+            
+        .gallery-item:hover img {
+            transform: scale(1.08);
+        }
+
+        /* --- Glassmorphism Effect on Description --- */
+        .description-box {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            color: var(--white);
+            padding: 1rem;
+            text-align: center;
+            font-weight: 600;
+            opacity: 0;
+            transform: translateY(100%);
+            transition: opacity var(--transition-speed) ease, transform var(--transition-speed) ease;
+                
+            /* Glassmorphism Styles */
+            background: rgba(0, 0, 0, 0.25);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border-top: 1px solid rgba(255, 255, 255, 0.3);
+            text-shadow: 0 0 8px rgba(0, 0, 0, 0.7);
+        }
+
+        .gallery-item:hover .description-box {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- Modal Styling --- (Kept largely the same as it was modern) */
         .modal {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
+            background-color: rgba(0, 0, 0, 0.95);
             display: flex;
             justify-content: center;
             align-items: center;
-            z-index: 1000;
+            z-index: 2000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
         }
+
+        .modal.open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
         .modal img {
-            max-width: 80%;
-            max-height: 80%;
+            max-width: 90%;
+            max-height: 90%;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
+            border-radius: 8px;
         }
-        .modal .close {
+
+        .modal .close, .modal .navigation {
+            color: var(--white);
+            font-size: 3rem;
             position: absolute;
-            top: 10px;
-            right: 10px;
-            font-size: 2em;
-            color: #fff;
             cursor: pointer;
+            padding: 10px;
+            opacity: 0.8;
+            transition: opacity 0.2s, transform 0.2s;
         }
-        .modal .navigation {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 2em;
-            color: #fff;
-            cursor: pointer;
+        .modal .close:hover, .modal .navigation:hover {
+            opacity: 1;
+            transform: scale(1.1);
         }
-        .modal .prev {
-            left: 10px;
+        .modal .close { top: 20px; right: 30px; }
+        .modal .prev { left: 20px; }
+        .modal .next { right: 20px; }
+
+        /* --- Footer and Scroll Button --- */
+        .site-footer {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 2rem 1rem;
+            margin-top: 3rem;
+            text-align: center;
+            font-size: 0.9rem;
         }
-        .modal .next {
-            right: 10px;
+
+        .site-footer p {
+            margin: 0.5rem 0;
         }
+
         .scroll-to-top {
             position: fixed;
             bottom: 20px;
             right: 20px;
-            background-color: #003366;
-            color: #ffffff;
+            background-color: var(--secondary-color);
+            color: var(--white);
             border: none;
             border-radius: 50%;
             width: 50px;
@@ -147,127 +334,250 @@
             justify-content: center;
             align-items: center;
             font-size: 24px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: background-color var(--transition-speed);
+            z-index: 1000;
         }
         .scroll-to-top:hover {
-            background-color: #555;
+            background-color: #e69500;
         }
-        footer {
-            background-color: #003366;
-            color: #ffffff;
-            padding: 1em 0;
-            margin-top: 2em;
+
+        /* --- 📱 Mobile View Adjustments (Responsiveness) --- */
+        @media (max-width: 992px) {
+            
+            .header-top {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            .contact-info {
+                flex-direction: column;
+                align-items: center;
+                gap: 0.25rem;
+            }
+            .header-top a {
+                margin: 0;
+            }
+
+            .nav-inner {
+                justify-content: space-between;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+            
+            .nav-links {
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                /* Darker background for contrast on mobile */
+                background-color: var(--primary-color); 
+                height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease;
+                align-items: flex-start;
+                z-index: 99;
+            }
+
+            .nav-links.active {
+                height: auto; 
+                max-height: 500px; /* Arbitrary large height */
+            }
+
+            .nav-links li {
+                width: 100%;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
         }
     </style>
 </head>
 <body>
+
     <div class="header-top">
         <div class="contact-info">
-            <small>Email: sanjoeblessedschool@gmail.com | Contact: 9961452061</small>
+            <a href="mailto:sanjoeblessedschool@gmail.com" aria-label="Email sanjoeblessedschool@gmail.com"><i class="fas fa-envelope"></i>sanjoeblessedschool@gmail.com</a>
+            <a href="tel:9961452061" aria-label="Call 9961452061"><i class="fas fa-phone"></i>9961452061</a>
         </div>
         <div class="date-time" id="date-time"></div>
     </div>
-    <header>
-        <img src="logo.jpg" alt="SANJOE Logo" width="50">
-        <h1>SANJOE PUBLIC SCHOOL KANIYARAM</h1>
-        <p>CBSE AFFILIATION NUMBER : 930992</p>
-    </header>
-    <nav>
-	<a href="index.html">Home</a>
-        <a href="about-us.html">About Us</a>
-        <a href="general.html">General</a>
-        <a href="index.html#staff">Staff</a>
-        <a href="kindergarten.html">Kindergarten</a>
-        <a href="#gallery">Gallery</a>
-        <a href="https://forms.gle/QhPGrzfeuXSUerYa6">Admission</a>
-        <a href="mandatory-disclosure.html">Mandatory Disclosure</a>
-        <a href="contact.html">Contact</a>
-    </nav>
-    <section id="gallery">
-        <h2>Gallery</h2>
-        <div class="gallery-container">
-            <div class="gallery-item">
-                <img src="gallery/1.jpg" alt="Gallery Image 1">
-                <div class="description-box">Annual Day</div>
+
+    <header class="main-header">
+        <div class="logo-container">
+            <img src="logo.jpg" alt="SANJOE Public School Logo">
+            <div class="school-title">
+                <h1>SANJOE PUBLIC SCHOOL KANIYARAM</h1>
+                <p>CBSE AFFILIATION NUMBER: 930992</p>
             </div>
-            <div class="gallery-item">
-                <img src="gallery/2.jpg" alt="Gallery Image 2">
-                <div class="description-box">MVD</div>
-            </div>
-            <div class="gallery-item">
-                <img src="gallery/3.jpg" alt="Gallery Image 3">
-                <div class="description-box">Annual Day</div>
-            </div>
-<div class="gallery-item">
-                <img src="gallery/4.jpg" alt="Gallery Image 4">
-                <div class="description-box">Annual Day</div>
-            </div>
-<div class="gallery-item">
-                <img src="gallery/5.jpg" alt="Gallery Image 5">
-                <div class="description-box">Nature Day</div>
-            </div>
-<div class="gallery-item">
-                <img src="gallery/6.jpg" alt="Gallery Image 6">
-                <div class="description-box">School Opening Day</div>
-            </div>
-<div class="gallery-item">
-                <img src="gallery/7.jpg" alt="Gallery Image 7">
-                <div class="description-box">Annual Day</div>
-            </div>
-            <!-- Add more gallery images as needed -->
         </div>
-    </section>
-    <footer>
-        <p>&copy; 2024 Sanjoe Public School Kaniyaram. All rights reserved.</p>
-        <p>Contact Us: 9961452061 | sanjoeblessedschool@gmail.com</p>
-        <p>Location: Kaniyaram, Wayanad, Kerala, India</p>
-        <div class="visitor-count" id="visitor-count">Visitors: 0</div>
+    </header>
+
+    <nav class="navbar" aria-label="Main Navigation">
+        <div class="nav-inner">
+            <button class="menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navMenu">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-links" id="navMenu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about-us.html">About Us</a></li>
+                <li><a href="general.html">General</a></li>
+                <li><a href="index.html#staff">Staff</a></li>
+                <li><a href="kindergarten.html">Kindergarten</a></li>
+                <li><a href="#gallery" aria-current="page">Gallery</a></li>
+                <li><a href="https://forms.gle/QhPGrzfeuXSUerYa6" target="_blank">Admission</a></li>
+                <li><a href="mandatory-disclosure.html">Mandatory Disclosure</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <section id="gallery" class="content-section" aria-labelledby="gallery-heading">
+            <h2 id="gallery-heading">School Gallery</h2>
+            <div class="gallery-container">
+                
+                <figure class="gallery-item" data-index="0">
+                    <img src="gallery/1.jpg" alt="Annual Day Celebration">
+                    <figcaption class="description-box">Annual Day Celebration</figcaption>
+                </figure>
+                
+                <figure class="gallery-item" data-index="1">
+                    <img src="gallery/2.jpg" alt="MVD Awareness Program">
+                    <figcaption class="description-box">MVD Awareness Program</figcaption>
+                </figure>
+                
+                <figure class="gallery-item" data-index="2">
+                    <img src="gallery/3.jpg" alt="Cultural Program">
+                    <figcaption class="description-box">Cultural Program</figcaption>
+                </figure>
+                
+                <figure class="gallery-item" data-index="3">
+                    <img src="gallery/4.jpg" alt="Student Activities">
+                    <figcaption class="description-box">Student Activities</figcaption>
+                </figure>
+                
+                <figure class="gallery-item" data-index="4">
+                    <img src="gallery/5.jpg" alt="Nature Day">
+                    <figcaption class="description-box">Nature Day Activities</figcaption>
+                </figure>
+                
+                <figure class="gallery-item" data-index="5">
+                    <img src="gallery/6.jpg" alt="School Opening Day">
+                    <figcaption class="description-box">School Opening Day</figcaption>
+                </figure>
+
+                <figure class="gallery-item" data-index="6">
+                    <img src="gallery/7.jpg" alt="Group Performance">
+                    <figcaption class="description-box">Group Performance</figcaption>
+                </figure>
+
+            </div>
+        </section>
+    </main>
+
+    <div class="modal" id="imageModal" role="dialog" aria-modal="true" aria-hidden="true">
+        <span class="close" id="closeModal" aria-label="Close image viewer">&times;</span>
+        <span class="navigation prev" id="prevImage" aria-label="Previous image">&lt;</span>
+        <img src="" alt="Full-Screen Image" id="modalImage">
+        <span class="navigation next" id="nextImage" aria-label="Next image">&gt;</span>
+    </div>
+
+    <footer class="site-footer">
+        <p>&copy; <span id="current-year"></span> Sanjoe Public School Kaniyaram. All rights reserved.</p>
+        <p><i class="fas fa-map-marker-alt"></i> Location: Kaniyaram, Wayanad, Kerala, India</p>
     </footer>
-    <button class="scroll-to-top" id="scrollToTopBtn">↑</button>
+    
+    <button class="scroll-to-top" id="scrollToTopBtn" aria-label="Scroll to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
     <script>
+        // --- Core Functions ---
+
+        // Set current year in footer
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        // --- Date and Time Update ---
         function updateTime() {
             const now = new Date();
-            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' };
+            const options = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' };
             document.getElementById('date-time').textContent = now.toLocaleDateString('en-US', options);
         }
         setInterval(updateTime, 1000);
-        updateTime(); // Initial call to set the time immediately
+        updateTime();
 
-        document.querySelectorAll('.gallery-item img').forEach((img, index, images) => {
-            img.addEventListener('click', () => {
-                const modal = document.createElement('div');
-                modal.classList.add('modal');
-                modal.innerHTML = `
-                    <span class="close">&times;</span>
-                    <span class="navigation prev">&lt;</span>
-                    <img src="${img.src}" alt="Gallery Image">
-                    <span class="navigation next">&gt;</span>
-                `;
-                modal.querySelector('.close').addEventListener('click', () => document.body.removeChild(modal));
-                modal.addEventListener('click', (e) => {
-                    if (e.target === modal) {
-                        document.body.removeChild(modal);
-                    }
-                });
-                modal.querySelector('.prev').addEventListener('click', () => {
-                    showImage(index - 1);
-                });
-                modal.querySelector('.next').addEventListener('click', () => {
-                    showImage(index + 1);
-                });
-                document.body.appendChild(modal);
+        // --- Mobile Menu Toggle Function ---
+        function toggleMenu() {
+            const navMenu = document.getElementById('navMenu');
+            const toggleButton = document.querySelector('.menu-toggle');
+            const isExpanded = navMenu.classList.toggle('active');
+            toggleButton.setAttribute('aria-expanded', isExpanded);
+        }
+        document.querySelector('.menu-toggle').addEventListener('click', toggleMenu);
 
-                function showImage(newIndex) {
-                    if (newIndex < 0) newIndex = images.length - 1;
-                    if (newIndex >= images.length) newIndex = 0;
-                    modal.querySelector('img').src = images[newIndex].src;
-                    index = newIndex;
-                }
-            });
+
+        // --- Gallery Modal Functionality ---
+        const galleryItems = Array.from(document.querySelectorAll('.gallery-item'));
+        const modal = document.getElementById('imageModal');
+        const modalImage = document.getElementById('modalImage');
+        const closeModalBtn = document.getElementById('closeModal');
+        const prevBtn = document.getElementById('prevImage');
+        const nextBtn = document.getElementById('nextImage');
+        let currentIndex = 0;
+
+        function openModal(index) {
+            currentIndex = index;
+            modalImage.src = galleryItems[currentIndex].querySelector('img').src;
+            modal.classList.add('open');
+            modal.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden'; // Prevent scrolling background
+        }
+
+        function closeModal() {
+            modal.classList.remove('open');
+            modal.setAttribute('aria-hidden', 'true');
+            document.body.style.overflow = '';
+        }
+
+        function navigate(direction) {
+            currentIndex = (currentIndex + direction + galleryItems.length) % galleryItems.length;
+            modalImage.src = galleryItems[currentIndex].querySelector('img').src;
+        }
+
+        galleryItems.forEach((item, index) => {
+            item.addEventListener('click', () => openModal(index));
         });
 
+        closeModalBtn.addEventListener('click', closeModal);
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+        prevBtn.addEventListener('click', (e) => { e.stopPropagation(); navigate(-1); });
+        nextBtn.addEventListener('click', (e) => { e.stopPropagation(); navigate(1); });
+
+        // Keyboard navigation (Escape key, Arrow keys)
+        document.addEventListener('keydown', (e) => {
+            if (modal.classList.contains('open')) {
+                if (e.key === "Escape") {
+                    closeModal();
+                } else if (e.key === "ArrowLeft") {
+                    navigate(-1);
+                } else if (e.key === "ArrowRight") {
+                    navigate(1);
+                }
+            }
+        });
+
+
+        // --- Scroll to Top Button Functionality ---
         const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+        const scrollThreshold = 300;
+
         window.addEventListener('scroll', () => {
-            if (window.pageYOffset > 300) {
+            if (window.pageYOffset > scrollThreshold) {
                 scrollToTopBtn.style.display = 'flex';
             } else {
                 scrollToTopBtn.style.display = 'none';
@@ -276,13 +586,6 @@
         scrollToTopBtn.addEventListener('click', () => {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
-
-        const visitorCountElement = document.getElementById('visitor-count');
-        let visitorCount = parseInt(localStorage.getItem('visitorCount')) || 0;
-        visitorCount += 1;
-        localStorage.setItem('visitorCount', visitorCount);
-        visitorCountElement.textContent = `Visitors: ${visitorCount}`;
     </script>
 </body>
 </html>
-
