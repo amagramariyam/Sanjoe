@@ -4,132 +4,306 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us - Sanjoe Public School</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
+        /* 1. CSS Variables for modern theme management */
+        :root {
+            --primary-color: #004a99; /* Deep Blue - School/Trust Color */
+            --secondary-color: #fca311; /* Vibrant Orange/Gold - Accent Color */
+            --text-color: #333333;
+            --background-light: #ffffff;
+            --background-dark: #f9f9f9;
+            --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --border-radius: 8px;
+        }
+
+        /* 2. Base Styles and Typography */
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Poppins', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f0f8ff;
-            color: #000;
-            text-align: center;
+            background-color: var(--background-dark);
+            color: var(--text-color);
+            line-height: 1.6;
+            text-align: left; /* Default to left alignment for professional content */
         }
-        header {
-            background-color: #003366;
-            color: #ffffff;
-            padding: 1em 0;
+        
+        /* 3. Header & Navigation */
+        .header-bar {
+            background-color: var(--primary-color);
+            color: var(--background-light);
+            padding: 1rem 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
-        header h1 {
-            animation: fadeIn 1.5s ease-out;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        nav {
-            display: flex;
-            justify-content: center;
-            background-color: #008000;
-            position: relative;
-        }
-        nav a {
-            color: #ffffff;
-            padding: 1em;
-            text-decoration: none;
-        }
-        nav a:hover {
-            background-color: #cbd394;
-        }
-        .about-container {
-            padding: 2em;
-            text-align: left;
+
+        .header-content {
             max-width: 1200px;
             margin: 0 auto;
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
         }
+
+        .logo-placeholder {
+            width: 40px;
+            height: 40px;
+            background-color: var(--secondary-color);
+            border-radius: 50%;
+            margin-right: 15px;
+            /* In a real scenario, this would be an image tag with the school logo */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--primary-color);
+        }
+
+        .header-content h1 {
+            margin: 0;
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+
+        nav {
+            background-color: var(--background-light);
+            border-bottom: 1px solid #eeeeee;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-links {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap; /* Allows links to wrap on small screens */
+            padding: 0 10px;
+        }
+        
+        nav a {
+            color: var(--primary-color);
+            padding: 1rem 1rem;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--secondary-color);
+        }
+        
+        /* Modern underline effect on hover/active */
+        nav a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            display: block;
+            margin-top: 5px;
+            right: 0;
+            background: var(--secondary-color);
+            transition: width 0.3s ease, right 0.3s ease;
+        }
+
+        nav a:hover:after, nav a.active:after {
+            width: 100%;
+            right: 0;
+            left: 0;
+        }
+
+
+        /* 4. Main Content Layout */
+        .about-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 20px;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
         .about-section {
-            margin-bottom: 2em;
+            background-color: var(--background-light);
+            padding: 25px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            transition: transform 0.3s ease;
+            border-left: 5px solid var(--secondary-color); /* Feature line */
         }
+        
+        .about-section:hover {
+            transform: translateY(-5px);
+        }
+
         .about-section h2 {
-            color: #003366;
-            margin-bottom: 1em;
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            border-bottom: 2px solid var(--secondary-color);
+            display: inline-block;
+            padding-bottom: 5px;
+            margin-top: 0;
+            margin-bottom: 15px;
         }
-        .about-section p {
-            line-height: 1.6;
-            margin-bottom: 1em;
+        
+        .about-section ul {
+            list-style: none;
+            padding-left: 0;
         }
+        
+        .about-section li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 8px;
+        }
+
+        /* Custom list style */
+        .about-section li::before {
+            content: '✓'; /* Modern checkmark icon or similar */
+            color: var(--secondary-color);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        /* 5. Footer */
         footer {
-            background-color: #003366;
-            color: #ffffff;
+            background-color: var(--primary-color);
+            color: #c9e6ff;
             text-align: center;
-            padding: 1em 0;
+            padding: 2em 20px;
+            font-size: 0.9rem;
+            margin-top: 3rem;
         }
+        
         footer p {
             margin: 0.5em 0;
+            opacity: 0.8;
         }
+        
+        footer a {
+            color: #ffffff;
+            text-decoration: none;
+        }
+        
+        footer a:hover {
+            text-decoration: underline;
+        }
+        
+        /* 6. Media Queries for Responsiveness */
+        @media (max-width: 768px) {
+            .nav-links {
+                justify-content: flex-start;
+                overflow-x: auto;
+            }
+            nav a {
+                padding: 0.8rem 0.5rem;
+                white-space: nowrap; /* Prevent nav links from breaking */
+            }
+            
+            .header-content h1 {
+                font-size: 1.5rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .about-container {
+                margin: 1rem auto;
+            }
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
     </style>
 </head>
 <body>
-    <header>
-        <h1>About Us</h1>
-    </header>
+    <div class="header-bar">
+        <header class="header-content">
+            <div class="logo-placeholder">SPS</div>
+            <h1>About Us</h1>
+        </header>
+    </div>
+    
     <nav>
-        <a href="index.html">Home</a>
-        <a href="about-us.html">About Us</a>
-        <a href="index.html#staff">Staff</a>
-        <a href="index.html#gallery">Gallery</a>
-        <a href="https://forms.gle/QhPGrzfeuXSUerYa6">Admission</a>
-        <a href="mandatory-disclosure.html">Mandatory Disclosure</a>
-        <a href="contact.html">Contact</a>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="about-us.html" class="active">About Us</a>
+            <a href="index.html#staff">Staff</a>
+            <a href="index.html#gallery">Gallery</a>
+            <a href="https://forms.gle/QhPGrzfeuXSUerYa6" target="_blank">Admission</a>
+            <a href="mandatory-disclosure.html">Disclosure</a>
+            <a href="contact.html">Contact</a>
+        </div>
     </nav>
+    
     <div class="about-container">
-        <div class="about-section">
-            <h2>Our Mission</h2>
-            <p>At Sanjoe Public School, our mission is to provide a nurturing environment where students can grow academically, emotionally, and socially. We are committed to fostering a love for learning, instilling moral values, and developing well-rounded individuals who are prepared to contribute positively to society.</p>
+        <div class="about-section" style="margin-bottom: 2rem; border-left: 5px solid var(--primary-color);">
+            <h2>Welcome to Sanjoe Public School</h2>
+            <p>Sanjoe Public School is dedicated to nurturing future leaders through holistic education, blending academic rigor with ethical and social development. Located in the serene environment of Kaniyaram, Wayanad, we strive to create a supportive and inclusive community where every student can achieve their full potential.</p>
         </div>
-        <div class="about-section">
-            <h2>Our Vision</h2>
-            <p>Our vision is to be a leading educational institution recognized for its academic excellence, innovative teaching methods, and dedication to holistic development. We aim to create a supportive and inclusive community where every student can reach their full potential.</p>
+        
+        <div class="about-grid">
+            <div class="about-section">
+                <h2>Our Mission 🙏</h2>
+                <p>To provide a nurturing environment where students can grow academically, emotionally, and socially. We are committed to fostering a love for learning, instilling moral values, and developing well-rounded individuals prepared to contribute positively to society.</p>
+            </div>
+            
+            <div class="about-section">
+                <h2>Our Vision 🌟</h2>
+                <p>To be a leading educational institution recognized for its academic excellence, innovative teaching methods, and dedication to holistic development. We aim to create a supportive community where every student can reach their highest potential.</p>
+            </div>
+
+            <div class="about-section">
+                <h2>Our Curriculum 📚</h2>
+                <p>We offer a comprehensive curriculum aligned with the **Central Board of Secondary Education (CBSE)** guidelines. Our approach balances academic rigor with opportunities for extracurricular involvement, encouraging students to explore diverse interests and skills.</p>
+            </div>
+            
+            <div class="about-section">
+                <h2>Our Staff 🧑‍🏫</h2>
+                <p>Our dedicated team of educators is committed to providing a high-quality education and supporting the personal growth of each student. Our teachers are **experienced, passionate**, and continuously engage in professional development to stay current with the latest educational practices.</p>
+            </div>
+
+            <div class="about-section full-width">
+                <h2>Facilities & Infrastructure 🏫</h2>
+                <p>Sanjoe Public School boasts state-of-the-art facilities designed to enhance the learning experience. Our campus includes:</p>
+                <ul>
+                    <li>Well-equipped classrooms with modern teaching aids.</li>
+                    <li>Advanced science and computer laboratories.</li>
+                    <li>A well-stocked library with a wide range of resources.</li>
+                    <li>Extensive sports facilities, including a playground and indoor sports area.</li>
+                    <li>Art and music rooms to foster creativity and expression.</li>
+                    <li>Auditorium for school events and activities.</li>
+                </ul>
+            </div>
+
+            <div class="about-section full-width">
+                <h2>Extracurricular Activities 🎨⚽</h2>
+                <p>We believe in the importance of extracurricular activities in developing well-rounded individuals. Our students have the opportunity to participate in a variety of clubs and activities, including:</p>
+                <ul>
+                    <li>Competitive Sports teams (Cricket, Football, Basketball)</li>
+                    <li>Art, Music, and Drama clubs</li>
+                    <li>Debate and Public Speaking programs</li>
+                    <li>Science, Technology, and Robotics clubs</li>
+                    <li>Meaningful Community Service projects</li>
+                </ul>
+            </div>
         </div>
-        <div class="about-section">
-            <h2>Our Facilities</h2>
-            <p>Sanjoe Public School boasts state-of-the-art facilities designed to enhance the learning experience. Our campus includes:</p>
-            <ul>
-                <li>Well-equipped classrooms with modern teaching aids</li>
-                <li>Advanced science and computer laboratories</li>
-                <li>A well-stocked library with a wide range of resources</li>
-                <li>Extensive sports facilities, including a playground and indoor sports area</li>
-                <li>Art and music rooms to foster creativity</li>
-                <li>Auditorium for events and activities</li>
-            </ul>
-        </div>
-        <div class="about-section">
-            <h2>Our Curriculum</h2>
-            <p>We offer a comprehensive curriculum that is aligned with the Central Board of Secondary Education (CBSE) guidelines. Our curriculum is designed to provide a balanced education that combines academic rigor with opportunities for extracurricular involvement. Students are encouraged to explore their interests and develop their skills in various fields.</p>
-        </div>
-        <div class="about-section">
-            <h2>Extracurricular Activities</h2>
-            <p>At Sanjoe Public School, we believe in the importance of extracurricular activities in developing well-rounded individuals. Our students have the opportunity to participate in a variety of clubs and activities, including:</p>
-            <ul>
-                <li>Sports teams and competitions</li>
-                <li>Art and music clubs</li>
-                <li>Debate and public speaking</li>
-                <li>Science and technology clubs</li>
-                <li>Community service projects</li>
-            </ul>
-        </div>
-        <div class="about-section">
-            <h2>Our Staff</h2>
-            <p>Our dedicated team of educators is committed to providing a high-quality education and supporting the personal growth of each student. Our teachers are experienced, passionate, and continuously engage in professional development to stay abreast of the latest educational practices.</p>
-        </div>
-        <div class="about-section">
-            <h2>Join Us</h2>
-            <p>We invite you to join the Sanjoe Public School community. Whether you are a prospective student, parent, or educator, we welcome you to visit our campus, meet our staff, and learn more about what makes our school a special place for learning and growth.</p>
+        
+        <div class="about-section" style="margin-top: 2rem; text-align: center; background-color: var(--primary-color); color: white; border-left: none;">
+             <h2 style="color: white; border-bottom: 2px solid var(--secondary-color);">Join Our Community</h2>
+             <p>We invite you to visit our campus, meet our staff, and learn more about what makes Sanjoe Public School a special place for learning and growth. **Enrollment is now open!**</p>
+             <a href="https://forms.gle/QhPGrzfeuXSUerYa6" target="_blank" style="display: inline-block; padding: 10px 25px; margin-top: 15px; background-color: var(--secondary-color); color: var(--primary-color); text-decoration: none; border-radius: 5px; font-weight: 600; transition: background-color 0.3s;">Apply for Admission</a>
         </div>
     </div>
+    
     <footer>
-        <p>&copy; 2024 Sanjoe Public School Kaniyaram. All rights reserved.</p>
-        <p>Contact Us: 9961452061 | sanjoeblessedschool@gmail.com</p>
         <p>Location: Kaniyaram, Wayanad, Kerala, India</p>
+        <p>Contact: 9961452061 | <a href="mailto:sanjoeblessedschool@gmail.com">sanjoeblessedschool@gmail.com</a></p>
+        <p>&copy; 2024 Sanjoe Public School Kaniyaram. All rights reserved.</p>
     </footer>
 </body>
 </html>
-
